@@ -54,27 +54,27 @@
       <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-152">
-              <caret line="251" column="24" selection-start-line="251" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="362">
+              <caret line="132" column="48" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
               <folding>
                 <element signature="e#3473#4380#0" expanded="true" />
                 <element signature="e#4379#4380#0" expanded="true" />
-                <element signature="e#4457#4608#0" expanded="true" />
-                <element signature="e#4607#4608#0" expanded="true" />
-                <element signature="e#4687#5560#0" expanded="true" />
-                <element signature="e#5559#5560#0" expanded="true" />
-                <element signature="e#7187#7238#0" expanded="true" />
-                <element signature="e#7276#7314#0" expanded="true" />
-                <element signature="e#7323#7360#0" expanded="true" />
-                <element signature="e#8737#10688#0" expanded="true" />
-                <element signature="e#10687#10688#0" expanded="true" />
-                <element signature="e#10833#12748#0" expanded="true" />
-                <element signature="e#12747#12748#0" expanded="true" />
-                <element signature="e#13957#13987#0" expanded="true" />
-                <element signature="e#15138#15152#0" expanded="true" />
-                <element signature="e#15235#15249#0" expanded="true" />
-                <element signature="e#15332#15346#0" expanded="true" />
-                <element signature="e#15429#15443#0" expanded="true" />
+                <element signature="e#4457#4656#0" expanded="true" />
+                <element signature="e#4655#4656#0" expanded="true" />
+                <element signature="e#4735#5608#0" expanded="true" />
+                <element signature="e#5607#5608#0" expanded="true" />
+                <element signature="e#7556#7607#0" expanded="true" />
+                <element signature="e#7645#7683#0" expanded="true" />
+                <element signature="e#7692#7729#0" expanded="true" />
+                <element signature="e#9106#11062#0" expanded="true" />
+                <element signature="e#11061#11062#0" expanded="true" />
+                <element signature="e#11207#13122#0" expanded="true" />
+                <element signature="e#13121#13122#0" expanded="true" />
+                <element signature="e#14331#14361#0" expanded="true" />
+                <element signature="e#15512#15526#0" expanded="true" />
+                <element signature="e#15609#15623#0" expanded="true" />
+                <element signature="e#15706#15720#0" expanded="true" />
+                <element signature="e#15803#15817#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1891,7 +1891,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="ZY2238KTRH" />
+    <property name="device.picker.selection" value="26da58ca" />
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -2225,7 +2225,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.50323623" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30593607" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.304414" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2280,22 +2280,22 @@
           <folding>
             <element signature="e#3473#4380#0" expanded="true" />
             <element signature="e#4379#4380#0" expanded="true" />
-            <element signature="e#4457#4608#0" expanded="true" />
-            <element signature="e#4607#4608#0" expanded="true" />
-            <element signature="e#4687#5560#0" expanded="true" />
-            <element signature="e#5559#5560#0" expanded="true" />
-            <element signature="e#7187#7238#0" expanded="true" />
-            <element signature="e#7276#7314#0" expanded="true" />
-            <element signature="e#7323#7360#0" expanded="true" />
-            <element signature="e#8737#10688#0" expanded="true" />
-            <element signature="e#10687#10688#0" expanded="true" />
-            <element signature="e#10833#12748#0" expanded="true" />
-            <element signature="e#12747#12748#0" expanded="true" />
-            <element signature="e#13957#13987#0" expanded="true" />
-            <element signature="e#15138#15152#0" expanded="true" />
-            <element signature="e#15235#15249#0" expanded="true" />
-            <element signature="e#15332#15346#0" expanded="true" />
-            <element signature="e#15429#15443#0" expanded="true" />
+            <element signature="e#4457#4656#0" expanded="true" />
+            <element signature="e#4655#4656#0" expanded="true" />
+            <element signature="e#4735#5608#0" expanded="true" />
+            <element signature="e#5607#5608#0" expanded="true" />
+            <element signature="e#7556#7607#0" expanded="true" />
+            <element signature="e#7645#7683#0" expanded="true" />
+            <element signature="e#7692#7729#0" expanded="true" />
+            <element signature="e#9106#11062#0" expanded="true" />
+            <element signature="e#11061#11062#0" expanded="true" />
+            <element signature="e#11207#13122#0" expanded="true" />
+            <element signature="e#13121#13122#0" expanded="true" />
+            <element signature="e#14331#14361#0" expanded="true" />
+            <element signature="e#15512#15526#0" expanded="true" />
+            <element signature="e#15609#15623#0" expanded="true" />
+            <element signature="e#15706#15720#0" expanded="true" />
+            <element signature="e#15803#15817#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2453,27 +2453,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-152">
-          <caret line="251" column="24" selection-start-line="251" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+        <state relative-caret-position="362">
+          <caret line="132" column="48" selection-start-line="132" selection-start-column="48" selection-end-line="132" selection-end-column="48" />
           <folding>
             <element signature="e#3473#4380#0" expanded="true" />
             <element signature="e#4379#4380#0" expanded="true" />
-            <element signature="e#4457#4608#0" expanded="true" />
-            <element signature="e#4607#4608#0" expanded="true" />
-            <element signature="e#4687#5560#0" expanded="true" />
-            <element signature="e#5559#5560#0" expanded="true" />
-            <element signature="e#7187#7238#0" expanded="true" />
-            <element signature="e#7276#7314#0" expanded="true" />
-            <element signature="e#7323#7360#0" expanded="true" />
-            <element signature="e#8737#10688#0" expanded="true" />
-            <element signature="e#10687#10688#0" expanded="true" />
-            <element signature="e#10833#12748#0" expanded="true" />
-            <element signature="e#12747#12748#0" expanded="true" />
-            <element signature="e#13957#13987#0" expanded="true" />
-            <element signature="e#15138#15152#0" expanded="true" />
-            <element signature="e#15235#15249#0" expanded="true" />
-            <element signature="e#15332#15346#0" expanded="true" />
-            <element signature="e#15429#15443#0" expanded="true" />
+            <element signature="e#4457#4656#0" expanded="true" />
+            <element signature="e#4655#4656#0" expanded="true" />
+            <element signature="e#4735#5608#0" expanded="true" />
+            <element signature="e#5607#5608#0" expanded="true" />
+            <element signature="e#7556#7607#0" expanded="true" />
+            <element signature="e#7645#7683#0" expanded="true" />
+            <element signature="e#7692#7729#0" expanded="true" />
+            <element signature="e#9106#11062#0" expanded="true" />
+            <element signature="e#11061#11062#0" expanded="true" />
+            <element signature="e#11207#13122#0" expanded="true" />
+            <element signature="e#13121#13122#0" expanded="true" />
+            <element signature="e#14331#14361#0" expanded="true" />
+            <element signature="e#15512#15526#0" expanded="true" />
+            <element signature="e#15609#15623#0" expanded="true" />
+            <element signature="e#15706#15720#0" expanded="true" />
+            <element signature="e#15803#15817#0" expanded="true" />
           </folding>
         </state>
       </provider>

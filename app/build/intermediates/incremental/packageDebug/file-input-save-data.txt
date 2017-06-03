@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Jun 03 16:33:15 IST 2017
+#Sat Jun 03 17:12:22 IST 2017
 8.set=ANDROID_RESOURCE
 1.base=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/resources-debug.ap_
 1.file=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/resources-debug.ap_/res/drawable/section_header.xml

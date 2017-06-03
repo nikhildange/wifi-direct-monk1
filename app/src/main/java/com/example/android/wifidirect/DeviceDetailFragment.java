@@ -128,9 +128,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 		mContentView.findViewById(R.id.btn_disconnect).setOnClickListener(
 				new View.OnClickListener() {
-
 					@Override
 					public void onClick(View v) {
+                        disconnectFromNetwork();
 						((DeviceActionListener) getActivity()).disconnect();
 					}
 				});
@@ -161,6 +161,18 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 		return mContentView;
 	}
+
+	private void disconnectFromNetwork() {
+        try {
+            serverSocket.close();
+            serverSocket = null;
+            clientSocketArray = new Socket[10];
+            clientSocketCount = 0;
+        }
+        catch (Exception e) {
+            Log.e("info","Exception in serverSocket : "+e);
+        }
+    }
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -248,7 +260,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 									int port = 8986;
 									Log.d("info","Started Server Thread");
                                     if (serverSocket == null)
-                                        serverSocket = new ServerSocket(port);
+                                            serverSocket = new ServerSocket(port);
 //									ServerSocket serverSocket = new ServerSocket();
 //									serverSocket.setReuseAddress(true);
 //									serverSocket.bind(new InetSocketAddress(port));
@@ -259,7 +271,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                     BufferedReader in = new BufferedReader(
                                             new InputStreamReader(client.getInputStream()));
                                     PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-									while(true) {
+									while(true ) {
 //										InputStream inputStream = client.getInputStream();
 //                           	     		DataInputStream dataInputStream = new DataInputStream(inputStream);
 //                                		String messageReceived = dataInputStream.readUTF();
