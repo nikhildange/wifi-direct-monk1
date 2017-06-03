@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_action_discover.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-xhdpi/ic_action_discover.png"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_launcher.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-xhdpi/ic_action_on_off.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-xhdpi/ic_action_on_off.png"
+    }
+]

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_launcher.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-ldpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_action_on_off.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-ldpi/ic_action_on_off.png"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-ldpi/ic_action_discover.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-ldpi/ic_action_discover.png"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-ldpi/icon.png",
+        "source": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/drawable-ldpi/icon.png"
+    }
+]
