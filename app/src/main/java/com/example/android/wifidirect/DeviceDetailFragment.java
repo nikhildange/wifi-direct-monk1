@@ -24,6 +24,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigInteger;
@@ -39,6 +41,9 @@ import java.net.UnknownHostException;
 import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import android.app.Fragment;
@@ -78,8 +83,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 	public static int PORT = 8988;
 	private static boolean server_running = false;
     private static final int SOCKET_TIMEOUT = 5000;
-    private Socket clientSocketArray[] = new Socket[10];
-    private int clientSocketCount = 0;
 
 	protected static final int CHOOSE_FILE_RESULT_CODE = 20;
     private boolean isServer = false;
@@ -88,9 +91,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 	private WifiP2pInfo info;
 	ProgressDialog progressDialog = null;
 
+    /*For server side*/
     ServerSocket serverSocket = null;
+    /*For client side*/
     BufferedReader in;
     PrintWriter out;
+
+    Set<DeviceProfile> profileSet = new HashSet<DeviceProfile>();
+    private String mydeviceId = null;
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
@@ -99,6 +107,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        DeviceProfile deviceProfile = new ProfileReader().profileReader(getActivity());
+        mydeviceId = deviceProfile.devId;
+        profileSet.add(deviceProfile);
+        deviceProfile.logDetails();
 
 		mContentView = inflater.inflate(R.layout.device_detail, null);
 		mContentView.findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
@@ -131,7 +143,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 					@Override
 					public void onClick(View v) {
                         disconnectFromNetwork();
-						((DeviceActionListener) getActivity()).disconnect();
 					}
 				});
 
@@ -140,18 +151,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 					@Override
 					public void onClick(View v) {
-						// Allow user to pick an image from Gallery or other
-						// registered apps
-//						Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//						intent.setType("image/*");
-//						startActivityForResult(intent, CHOOSE_FILE_RESULT_CODE);
-
                         String messageReceived = "Tapp on button";
 
                         if (isServer)
-                            broadcastMessage("Hi from server");
+                            broadcastMessageToClients("Hi from server");
                         else {
-                            out.println(messageReceived);
+                            sendMessageToServer(messageReceived);
                             Log.d("info","Message from client : "+messageReceived);
                         }
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
@@ -163,43 +168,20 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 	}
 
 	private void disconnectFromNetwork() {
-        try {
-            serverSocket.close();
-            serverSocket = null;
-            clientSocketArray = new Socket[10];
-            clientSocketCount = 0;
-        }
-        catch (Exception e) {
-            Log.e("info","Exception in serverSocket : "+e);
-        }
+            if (isServer){
+                broadcastMessageToClients("disconnect");
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                serverSocket = null;
+            }
+            else {
+                sendMessageToServer("disconnect");
+            }
+            ((DeviceActionListener) getActivity()).disconnect();
     }
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		String localIP = Utils.getLocalIPAddress();
-		// Trick to find the ip in the file /proc/net/arp
-		String client_mac_fixed = new String(device.deviceAddress).replace("99", "19");
-		String clientIP = Utils.getIPFromMac(client_mac_fixed);
-
-		// User has picked an image. Transfer it to group owner i.e peer using
-		// FileTransferService.
-		Uri uri = data.getData();
-		TextView statusText = (TextView) mContentView.findViewById(R.id.status_text);
-		statusText.setText("Sending: " + uri);
-		Log.d(WiFiDirectActivity.TAG, "Intent----------- " + uri);
-		Intent serviceIntent = new Intent(getActivity(), FileTransferService.class);
-		serviceIntent.setAction(FileTransferService.ACTION_SEND_FILE);
-		serviceIntent.putExtra(FileTransferService.EXTRAS_FILE_PATH, uri.toString());
-
-		if(localIP.equals(IP_SERVER)){
-			serviceIntent.putExtra(FileTransferService.EXTRAS_ADDRESS, clientIP);
-		}else{
-			serviceIntent.putExtra(FileTransferService.EXTRAS_ADDRESS, IP_SERVER);
-		}
-
-		serviceIntent.putExtra(FileTransferService.EXTRAS_PORT, PORT);
-		getActivity().startService(serviceIntent);
-	}
 
 	@Override
 	public void onConnectionInfoAvailable(final WifiP2pInfo info) {
@@ -233,19 +215,92 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 		establishConnectionForCommunication(info);
 	}
 
-	private void broadcastMessage (String message) {
+	private void sendProfile(Socket socket) {
+        try {
+            OutputStream os = socket.getOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(os);
+            DeviceProfile deviceProfile = profileSet.iterator().next();
+            deviceProfile.result = "ClientSideMessage";
+            System.out.println("Profile Send :" + deviceProfile.devId);
+            oos.writeObject(deviceProfile);
+//            oos.close();
+//            os.close();
+            Log.i("info","Profile Sent:");
+            deviceProfile.logDetails();
+        }
+        catch (Exception e){
+            Log.e("info", "Exception Error : " + e);
+            e.printStackTrace();
+        }
+    }
+
+    private DeviceProfile receiveProfile(Socket socket) {
+        try {
+            InputStream is = socket.getInputStream();
+            ObjectInputStream ois = new ObjectInputStream(is);
+            DeviceProfile receivedProfile = (DeviceProfile)ois.readObject();
+//            ois.close();
+//            is.close();
+            Log.i("info","Profile Received:");
+            receivedProfile.socket = socket;
+            receivedProfile.logDetails();
+            profileSet.add(receivedProfile);
+            broadcastMessageToClients("Welcome");
+            return  receivedProfile;
+        }
+        catch (Exception e){
+            Log.e("info", "Exception Error : " + e);
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private void removeProfile(String message) {
+        if (isServer){
+            Iterator<DeviceProfile> it = profileSet.iterator();
+            String exitingDeviceId = message.replace("_disconnect","");
+            while (it.hasNext()) {
+                DeviceProfile devProfile = it.next();
+                String nextDeviceId = devProfile.devId;
+                if (nextDeviceId.equals(exitingDeviceId)) {
+                    Log.i("info","Removing Profile :");
+                    devProfile.logDetails();
+                    try {
+                        devProfile.socket.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    it.remove();
+                }
+            }
+        }
+    }
+
+    private void sendMessageToServer (String message) {
+        if (!isServer)
+        out.println(mydeviceId+"_"+message);
+    }
+
+	private void broadcastMessageToClients (String msg) {
         if (isServer) {
-            for (int i = 0; i < clientSocketCount; i++) {
-                String str = "Sending Message to #"+(i+1)+" client : "+message;
-                Log.d("info",str);
+            Iterator<DeviceProfile> it = profileSet.iterator();
+            int i = 0;
+            String message = "server"+"_"+msg;
+            while (it.hasNext()) {
                 try {
-                    Socket client = clientSocketArray[i];
-                    out = new PrintWriter(client.getOutputStream(), true);
-                    out.println(str);
+                    DeviceProfile dp = it.next();
+                    if (!dp.devId.equals(mydeviceId)) {
+                        Log.i("info","Sending Message to #"+(i+1)+" client : "+message);
+                        dp.logDetails();
+                        Socket client = dp.socket;
+                        out = new PrintWriter(client.getOutputStream(), true);
+                        out.println(message);
+                    }
                 } catch (IOException e) {
-                    Log.e("info", "Error handling client " + e);
+                    Log.e("info", "Error broadcasting to client's " + e);
                     e.printStackTrace();
                 }
+                i++;
             }
         }
     }
@@ -265,27 +320,36 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //									serverSocket.setReuseAddress(true);
 //									serverSocket.bind(new InetSocketAddress(port));
                                     Socket client = serverSocket.accept();
-                                    clientSocketArray[clientSocketCount] = client;
-                                    clientSocketCount++;
-                                    Log.e("info","Socket Count : "+clientSocketCount);
+                                    receiveProfile(client);
                                     BufferedReader in = new BufferedReader(
                                             new InputStreamReader(client.getInputStream()));
                                     PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-									while(true ) {
-//										InputStream inputStream = client.getInputStream();
-//                           	     		DataInputStream dataInputStream = new DataInputStream(inputStream);
-//                                		String messageReceived = dataInputStream.readUTF();
-                                        Log.d("info","waiting for client message");
-                                        String messageReceived = in.readLine();
-                                        Log.d("info","Message Received from Client : "+messageReceived);
-//                                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
-//                                        t.show();
-									}
+                                    try {
+                                        while(true ) {
+                                            String messageReceived = in.readLine();
+                                            Log.d("info","Message Received from Client : "+messageReceived);
+                                            if (messageReceived.contains("_disconnect")) {
+                                                removeProfile(messageReceived);
+                                            }
+//                                            if (messageReceived == null) {
+//                                                Log.e("info","Message NULL on client #");
+//                                                break;
+//                                            }
+                                        }
+                                    }
+                                    catch (Exception e) {
+                                        Log.i("info","Exception in Server : "+e+" on client #");
+                                    }
+                                    finally {
+//                                        in.close();
+//                                        out.close();
+//                                        client.close();
+                                    }
 								} catch (Exception e){
-                                    Log.e("info","Error handling client " + e);
+                                    Log.e("info","Error : " + e);
 									e.printStackTrace();
 								}
-							}
+                            }
 						}
 				);
 				serverThread.start();
@@ -296,27 +360,40 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                             @Override
                             public void run() {
                                 try {
-                                    String sendMessage = "Namasker";
                                     Socket server = new Socket();
                                     InetAddress serverIPAddress = info.groupOwnerAddress;
                                     int portClient = 8986;
                                     server.bind(null);
                                     server.connect(new InetSocketAddress(serverIPAddress, portClient), SOCKET_TIMEOUT);
-//                                    OutputStream outputStream = server.getOutputStream();
-//                                    DataOutputStream dataOutputStream = new DataOutputStream(outputStream);
-//                                    dataOutputStream.writeUTF(sendMessage);
+                                    sendProfile(server);
                                     in = new BufferedReader(
                                             new InputStreamReader(server.getInputStream()));
                                     out = new PrintWriter(server.getOutputStream(), true);
-                                    while (true) {
-                                        Log.d("info","waiting for server message");
-                                        String messageReceived = in.readLine();
-                                        Log.d("info","Message Received from Server : "+messageReceived);
-//                                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
-//                                        t.show();
+                                    try {
+                                        while (true) {
+                                            String messageReceived = in.readLine();
+                                            Log.d("info","Message Received from Server : "+messageReceived);
+                                            if (messageReceived.equals("server_disconnect")) {
+                                                Log.e("info","Message NULL from server");
+                                                break;
+                                            }
+                                            if (messageReceived == null) {
+                                                Log.e("info","Message NULL from server");
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    catch (Exception e) {
+                                        Log.i("info","Exception in Client : "+e);
+                                    }
+                                    finally {
+//                                        in.close();
+//                                        out.close();
+//                                        server.close();
                                     }
                                 }
                                 catch (IOException e) {
+                                    Log.e("info","Error : " + e);
                                     e.printStackTrace();
                                 }
                             }
@@ -325,41 +402,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 clientThread.start();
             }
 	}
-
-    public static Enumeration<InetAddress> getWifiInetAddresses(final Context context) {
-        final WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
-        final WifiInfo wifiInfo = wifiManager.getConnectionInfo();
-        final String macAddress = wifiInfo.getMacAddress();
-        final String[] macParts = macAddress.split(":");
-        final byte[] macBytes = new byte[macParts.length];
-        for (int i = 0; i< macParts.length; i++) {
-            macBytes[i] = (byte)Integer.parseInt(macParts[i], 16);
-        }
-        try {
-            final Enumeration<NetworkInterface> e =  NetworkInterface.getNetworkInterfaces();
-            while (e.hasMoreElements()) {
-                final NetworkInterface networkInterface = e.nextElement();
-                if (Arrays.equals(networkInterface.getHardwareAddress(), macBytes)) {
-                    return networkInterface.getInetAddresses();
-                }
-            }
-        } catch (SocketException e) {
-            Log.wtf("WIFIIP", "Unable to NetworkInterface.getNetworkInterfaces()");
-        }
-        return null;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static<T extends InetAddress> T getWifiInetAddress(final Context context, final Class<T> inetClass) {
-        final Enumeration<InetAddress> e = getWifiInetAddresses(context);
-        while (e.hasMoreElements()) {
-            final InetAddress inetAddress = e.nextElement();
-            if (inetAddress.getClass() == inetClass) {
-                return (T)inetAddress;
-            }
-        }
-        return null;
-    }
 
 	/**
 	 * Updates the UI with device data
