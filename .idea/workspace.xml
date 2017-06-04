@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="info" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -42,51 +41,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="import-summary.txt" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/import-summary.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WifiP2pManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-16/android/net/wifi/p2p/WifiP2pManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="759" column="0" selection-start-line="759" selection-start-column="0" selection-end-line="759" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="288" column="34" selection-start-line="288" selection-start-column="34" selection-end-line="288" selection-end-column="34" />
+            <state relative-caret-position="2525">
+              <caret line="548" column="22" selection-start-line="548" selection-start-column="22" selection-end-line="548" selection-end-column="22" />
               <folding>
                 <element signature="e#3251#3266#0" expanded="true" />
-                <element signature="e#3879#4786#0" expanded="true" />
-                <element signature="e#4785#4786#0" expanded="true" />
-                <element signature="e#4863#5003#0" expanded="true" />
-                <element signature="e#5002#5003#0" expanded="true" />
-                <element signature="e#5082#5724#0" expanded="true" />
-                <element signature="e#5723#5724#0" expanded="true" />
-                <element signature="e#6677#6728#0" expanded="true" />
-                <element signature="e#6766#6804#0" expanded="true" />
-                <element signature="e#6813#6850#0" expanded="true" />
-                <element signature="e#10886#13231#0" expanded="true" />
-                <element signature="e#13230#13231#0" expanded="true" />
-                <element signature="e#13376#15862#0" expanded="true" />
-                <element signature="e#15861#15862#0" expanded="true" />
-                <element signature="e#16656#16670#0" expanded="true" />
-                <element signature="e#16753#16767#0" expanded="true" />
-                <element signature="e#16850#16864#0" expanded="true" />
-                <element signature="e#16947#16961#0" expanded="true" />
+                <element signature="e#3962#4869#0" expanded="true" />
+                <element signature="e#4868#4869#0" expanded="true" />
+                <element signature="e#4946#5086#0" expanded="true" />
+                <element signature="e#5085#5086#0" expanded="true" />
+                <element signature="e#5165#5897#0" expanded="true" />
+                <element signature="e#5896#5897#0" expanded="true" />
+                <element signature="e#6850#6901#0" expanded="true" />
+                <element signature="e#6939#6977#0" expanded="true" />
+                <element signature="e#6986#7023#0" expanded="true" />
+                <element signature="e#11018#13363#0" expanded="true" />
+                <element signature="e#13362#13363#0" expanded="true" />
+                <element signature="e#13508#15994#0" expanded="true" />
+                <element signature="e#15993#15994#0" expanded="true" />
+                <element signature="e#16788#16802#0" expanded="true" />
+                <element signature="e#16885#16899#0" expanded="true" />
+                <element signature="e#16982#16996#0" expanded="true" />
+                <element signature="e#17079#17093#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WordUtils.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1207">
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1753,6 +1742,7 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java" />
       </list>
     </option>
@@ -2202,7 +2192,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="774" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.02739726" sideWeight="0.49676377" order="7" side_tool="false" content_ui="tabs" />
@@ -2210,7 +2200,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63774735" sideWeight="0.19660194" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.61187214" sideWeight="0.8033981" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.63318115" sideWeight="0.8033981" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.00608828" sideWeight="0.49676377" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2264,23 +2254,23 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#3251#3266#0" expanded="true" />
-            <element signature="e#3879#4786#0" expanded="true" />
-            <element signature="e#4785#4786#0" expanded="true" />
-            <element signature="e#4863#5003#0" expanded="true" />
-            <element signature="e#5002#5003#0" expanded="true" />
-            <element signature="e#5082#5724#0" expanded="true" />
-            <element signature="e#5723#5724#0" expanded="true" />
-            <element signature="e#6677#6728#0" expanded="true" />
-            <element signature="e#6766#6804#0" expanded="true" />
-            <element signature="e#6813#6850#0" expanded="true" />
-            <element signature="e#10886#13231#0" expanded="true" />
-            <element signature="e#13230#13231#0" expanded="true" />
-            <element signature="e#13376#15862#0" expanded="true" />
-            <element signature="e#15861#15862#0" expanded="true" />
-            <element signature="e#16656#16670#0" expanded="true" />
-            <element signature="e#16753#16767#0" expanded="true" />
-            <element signature="e#16850#16864#0" expanded="true" />
-            <element signature="e#16947#16961#0" expanded="true" />
+            <element signature="e#3962#4869#0" expanded="true" />
+            <element signature="e#4868#4869#0" expanded="true" />
+            <element signature="e#4946#5086#0" expanded="true" />
+            <element signature="e#5085#5086#0" expanded="true" />
+            <element signature="e#5165#5897#0" expanded="true" />
+            <element signature="e#5896#5897#0" expanded="true" />
+            <element signature="e#6850#6901#0" expanded="true" />
+            <element signature="e#6939#6977#0" expanded="true" />
+            <element signature="e#6986#7023#0" expanded="true" />
+            <element signature="e#11018#13363#0" expanded="true" />
+            <element signature="e#13362#13363#0" expanded="true" />
+            <element signature="e#13508#15994#0" expanded="true" />
+            <element signature="e#15993#15994#0" expanded="true" />
+            <element signature="e#16788#16802#0" expanded="true" />
+            <element signature="e#16885#16899#0" expanded="true" />
+            <element signature="e#16982#16996#0" expanded="true" />
+            <element signature="e#17079#17093#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2412,22 +2402,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/import-summary.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1256">
@@ -2462,38 +2436,62 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-16/android/net/wifi/p2p/WifiP2pManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="93">
-          <caret line="759" column="0" selection-start-line="759" selection-start-column="0" selection-end-line="759" selection-end-column="0" />
+        <state relative-caret-position="363">
+          <caret line="730" column="70" selection-start-line="730" selection-start-column="70" selection-end-line="730" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/import-summary.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="288" column="34" selection-start-line="288" selection-start-column="34" selection-end-line="288" selection-end-column="34" />
+        <state relative-caret-position="2525">
+          <caret line="548" column="22" selection-start-line="548" selection-start-column="22" selection-end-line="548" selection-end-column="22" />
           <folding>
             <element signature="e#3251#3266#0" expanded="true" />
-            <element signature="e#3879#4786#0" expanded="true" />
-            <element signature="e#4785#4786#0" expanded="true" />
-            <element signature="e#4863#5003#0" expanded="true" />
-            <element signature="e#5002#5003#0" expanded="true" />
-            <element signature="e#5082#5724#0" expanded="true" />
-            <element signature="e#5723#5724#0" expanded="true" />
-            <element signature="e#6677#6728#0" expanded="true" />
-            <element signature="e#6766#6804#0" expanded="true" />
-            <element signature="e#6813#6850#0" expanded="true" />
-            <element signature="e#10886#13231#0" expanded="true" />
-            <element signature="e#13230#13231#0" expanded="true" />
-            <element signature="e#13376#15862#0" expanded="true" />
-            <element signature="e#15861#15862#0" expanded="true" />
-            <element signature="e#16656#16670#0" expanded="true" />
-            <element signature="e#16753#16767#0" expanded="true" />
-            <element signature="e#16850#16864#0" expanded="true" />
-            <element signature="e#16947#16961#0" expanded="true" />
+            <element signature="e#3962#4869#0" expanded="true" />
+            <element signature="e#4868#4869#0" expanded="true" />
+            <element signature="e#4946#5086#0" expanded="true" />
+            <element signature="e#5085#5086#0" expanded="true" />
+            <element signature="e#5165#5897#0" expanded="true" />
+            <element signature="e#5896#5897#0" expanded="true" />
+            <element signature="e#6850#6901#0" expanded="true" />
+            <element signature="e#6939#6977#0" expanded="true" />
+            <element signature="e#6986#7023#0" expanded="true" />
+            <element signature="e#11018#13363#0" expanded="true" />
+            <element signature="e#13362#13363#0" expanded="true" />
+            <element signature="e#13508#15994#0" expanded="true" />
+            <element signature="e#15993#15994#0" expanded="true" />
+            <element signature="e#16788#16802#0" expanded="true" />
+            <element signature="e#16885#16899#0" expanded="true" />
+            <element signature="e#16982#16996#0" expanded="true" />
+            <element signature="e#17079#17093#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1207">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -100,6 +100,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     Set<DeviceProfile> profileSet = new HashSet<DeviceProfile>();
     private String mydeviceId = null;
 
+    int inputMat[][];
+    int numberOfCapablity;
+
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
@@ -107,6 +110,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        numberOfCapablity = 3;
+
         DeviceProfile deviceProfile = new ProfileReader().profileReader(getActivity());
         mydeviceId = deviceProfile.devId;
         profileSet.add(deviceProfile);
@@ -151,11 +157,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 					@Override
 					public void onClick(View v) {
-                        String messageReceived = "Tapp on button";
-
-                        if (isServer)
-                            broadcastMessageToClients("Hi from server");
+                        if (isServer) {
+                            broadcastMessageToClients("Running Algorithm on server");
+                            runAlgorithm();
+                        }
                         else {
+                            String messageReceived = "Ping from client";
                             sendMessageToServer(messageReceived);
                             Log.d("info","Message from client : "+messageReceived);
                         }
@@ -291,7 +298,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     DeviceProfile dp = it.next();
                     if (!dp.devId.equals(mydeviceId)) {
                         Log.i("info","Sending Message to #"+(i+1)+" client : "+message);
-                        dp.logDetails();
                         Socket client = dp.socket;
                         out = new PrintWriter(client.getOutputStream(), true);
                         out.println(message);
@@ -525,4 +531,129 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 		return true;
 	}
 
+    public void printMat(int[][] matrix,int row,int col){
+        for(int r=0; r<row;r++){
+            for(int c=0; c<col;c++){
+                System.out.print(matrix[r][c]+"\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+
+    void generateInputMat(){
+        int bigVal = numberOfCapablity > profileSet.size() ? numberOfCapablity : profileSet.size();
+        inputMat = new int[bigVal][bigVal];
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        DeviceProfile deviceProfile;
+        int devNo = 0;
+
+        while (it.hasNext()){
+            deviceProfile = it.next();
+            inputMat[devNo][0] = deviceProfile.getBatVal();
+            inputMat[devNo][1] = deviceProfile.getCpuVal();
+            inputMat[devNo][2] = deviceProfile.getMemVal();
+            devNo++;
+        }
+
+        printMat(inputMat, profileSet.size(), numberOfCapablity);
+    }
+
+    void generateMatrix() {
+        int col = numberOfCapablity;
+        int row = profileSet.size();
+        int bigVal = col > row ? col : row;
+
+        for (int i = 0; i < bigVal; i++) {
+
+            if (i < row) {
+                for (int j = 0; j < bigVal; j++) {
+                    if (j < col) {
+                        inputMat[i][j] = inputMat[i][j];//Integer.parseInt(profileInfoMat[i][j+1]);
+                    } else {
+                        inputMat[i][j] = 0;
+                    }
+                }
+            } else {
+                for (int j = 0; j < bigVal; j++)
+                    inputMat[i][j] = 0;
+            }
+        }
+        printMat(inputMat, profileSet.size(), numberOfCapablity);
+    }
+
+    public void runRankerAlgoritm(){
+        double per = 0;
+        int width = numberOfCapablity > profileSet.size() ? numberOfCapablity : profileSet.size();
+
+        int[] maxArray = new int[width];
+        for(int r=0; r<width;r++){
+            int max = 0;
+            for(int c=0; c<width;c++){
+                if (inputMat[c][r] >= max) {
+                    max = inputMat[c][r];
+                }
+            }
+            maxArray[r] = max;
+        }
+
+        //	for (int j =0; j< width;j++)
+        //      	System.out.print(maxArray[j]+" ");
+
+        for(int c=0; c<width;c++){
+            for(int r=0; r<width;r++){
+                if (inputMat[r][c]!=0) {
+                    per = (((double)inputMat[r][c])/(double)maxArray[c]);
+                    per = per*(width);
+                    inputMat[r][c] = (int)(Math.round(per));//(int)(11-(Math.round(per)));
+                }
+            }
+        }
+        System.out.println("\nOutput for Comparator Algorithm : ");
+        printMat(inputMat,profileSet.size(),numberOfCapablity);
+    }
+
+    private void runHungarianAlgorithm() {
+        long time = System.currentTimeMillis();
+        AlgoMethod algorithm = new AlgoMethod(inputMat,numberOfCapablity > profileSet.size() ? numberOfCapablity : profileSet.size());
+        System.out.println(String.format("\nTotal time taken to execute : %dms\n", System.currentTimeMillis() - time));
+
+        String capArr[] = {"MEM","BAT","CPU"};
+
+        int[] r = algorithm.result();
+        System.out.println("Output : ");
+        for (int k =0 ; k < r.length;k++)
+        {
+            System.out.print("\n\n VALUE OF R : "+r[k]+" at "+k+"\n\n");
+        }
+
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        DeviceProfile d;
+        int i = 0;
+        String str = "";
+        while (it.hasNext()) {
+            d = it.next();
+            str =  " "+d.getBatVal() + " ";
+            str = str + d.getCpuVal() + " ";
+            str = str + d.getMemVal();
+            System.out.print("\n\n VALUE OF DEVICE "+d.devId+" : "+str+"\n\n");
+//                            display = d.devId + "device_id" +i + 1 + " Device " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability, Cost : " + profileInfoMat[i][r[i+1]];
+            System.out.print("\n\n VALUE OF R : "+r[i]+"\n\n");
+            System.out.println("device "+(i+1)+" with ID "+d.devId + " will work on " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability");// Cost : " + inputMat[i][r[i]]);
+//                            t = Toast.makeText(getActivity().getApplicationContext(), display, Toast.LENGTH_SHORT);
+//                            t.show();
+            i++;
+        }
+
+        System.out.println("\nTotal Cost : " + algorithm.total());
+    }
+
+    private void runAlgorithm() {
+        generateInputMat();
+        if (numberOfCapablity != profileSet.size()) {
+            generateMatrix();
+        }
+        runRankerAlgoritm();
+        runHungarianAlgorithm();
+    }
 }
