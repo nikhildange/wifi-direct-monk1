@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easy_ocr_library/easy_ocr_library.iml" filepath="$PROJECT_DIR$/easy_ocr_library/easy_ocr_library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tess-two/tess-two.iml" filepath="$PROJECT_DIR$/tess-two/tess-two.iml" />
       <module fileurl="file://$PROJECT_DIR$/wifi-direct-demo-monk1.iml" filepath="$PROJECT_DIR$/wifi-direct-demo-monk1.iml" />
     </modules>
   </component>

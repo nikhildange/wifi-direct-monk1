@@ -17,6 +17,10 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:5:5-44
+MERGED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:support-v4:22.2.1] /Users/nikhildange/.android/build-cache/63918d4a2ea18bc0890c13cffef37b2ac7e3cc95/output/AndroidManifest.xml:20:5-43
+MERGED from [wifi-direct-demo-monk1:tess-two:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/tess-two/build/intermediates/bundles/default/AndroidManifest.xml:22:5-24:41
 	android:targetSdkVersion
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
@@ -50,6 +54,7 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:11:22-72
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:12:5-81
+MERGED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:12:5-81
 	android:name
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:12:22-78
 uses-feature#android.hardware.wifi.direct
@@ -60,6 +65,8 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:15:19-62
 application
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:17:5-35:19
+MERGED from [com.android.support:appcompat-v7:22.2.1] /Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:support-v4:22.2.1] /Users/nikhildange/.android/build-cache/63918d4a2ea18bc0890c13cffef37b2ac7e3cc95/output/AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:19:9-41
 	android:icon
@@ -90,3 +97,11 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:33:18-40
 	android:name
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:33:41-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:11:5-80
+	android:name
+		ADDED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:11:22-77
+uses-permission#android.permission.CAMERA
+ADDED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:13:5-65
+	android:name
+		ADDED from [wifi-direct-demo-monk1:easy_ocr_library:unspecified] /Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/bundles/default/AndroidManifest.xml:13:22-62

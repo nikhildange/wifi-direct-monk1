@@ -1,0 +1,38 @@
+[
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_dark.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_primary_text_disable_only_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_search_url_text.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_search_url_text.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_light.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_secondary_text_material_light.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/switch_thumb_material_light.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/switch_thumb_material_light.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_secondary_text_material_dark.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/switch_thumb_material_dark.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/switch_thumb_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_dark.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_primary_text_material_dark.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_primary_text_disable_only_material_light.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_primary_text_disable_only_material_light.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/color/abc_primary_text_material_light.xml",
+        "source": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/color/abc_primary_text_material_light.xml"
+    }
+]

@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 16
+    compileSdkVersion 22
     buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.example.android.wifidirect"
-        minSdkVersion 14
-        targetSdkVersion 14
+        minSdkVersion 15
+        targetSdkVersion 15
     }
 
     buildTypes {
@@ -16,4 +16,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+}
+
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile project(':easy_ocr_library')
 }

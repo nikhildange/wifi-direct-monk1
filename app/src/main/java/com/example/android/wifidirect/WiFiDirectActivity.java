@@ -21,6 +21,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.net.wifi.p2p.WifiP2pConfig;
 import android.net.wifi.p2p.WifiP2pDevice;
 import android.net.wifi.p2p.WifiP2pManager;
@@ -37,6 +38,9 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
+import com.wordpress.priyankvex.easyocrscannerdemo.Config;
+import com.wordpress.priyankvex.easyocrscannerdemo.EasyOcrScanner;
+import com.wordpress.priyankvex.easyocrscannerdemo.EasyOcrScannerListener;
 
 /**
  * An activity that uses WiFi Direct APIs to discover and connect with available
@@ -45,7 +49,7 @@ import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
  * The application should also register a BroadcastReceiver for notification of
  * WiFi state related events.
  */
-public class WiFiDirectActivity extends Activity implements ChannelListener, DeviceActionListener {
+public class WiFiDirectActivity extends Activity implements ChannelListener, DeviceActionListener, EasyOcrScannerListener {
 
     public static final String TAG = "wifidirectdemo";
     private WifiP2pManager manager;
@@ -63,11 +67,29 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
         this.isWifiP2pEnabled = isWifiP2pEnabled;
     }
 
+    EasyOcrScanner mEasyOcrScanner;
+    @Override
+    public void onOcrScanStarted(String filePath) {
+
+    }
+
+    @Override
+    public void onOcrScanFinished(Bitmap bitmap, String recognizedText) {
+        recognizedText = recognizedText.replace("\n"," ").trim();
+        System.out.println("String : "+recognizedText);
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        mEasyOcrScanner = new EasyOcrScanner(WiFiDirectActivity.this, "EasyOcrScanner",
+                Config.REQUEST_CODE_CAPTURE_IMAGE, "eng");
+        // Set ocrScannerListener
+        mEasyOcrScanner.setOcrScannerListener(this);
+//        /storage/emulated/0/EasyOcrScanner/1496642835458.jpg
+        mEasyOcrScanner.onImageTaken("img1.jpg");
+//        mEasyOcrScanner.takePicture();
         // add necessary intent values to be matched.
 
         intentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
