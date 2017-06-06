@@ -61,6 +61,9 @@ import android.net.wifi.p2p.WifiP2pManager.ConnectionInfoListener;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -93,9 +96,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     /*For server side*/
     ServerSocket serverSocket = null;
+    String requestArray[] = new String[25];
+    int requestCount = 0;
+
     /*For client side*/
     BufferedReader in;
     PrintWriter out;
+    int requestNumber;
 
     Set<DeviceProfile> profileSet = new HashSet<DeviceProfile>();
     private String mydeviceId = null;
@@ -157,15 +164,16 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 					@Override
 					public void onClick(View v) {
-                        if (isServer) {
-                            broadcastMessageToClients("Running Algorithm on server");
-                            runAlgorithm();
-                        }
-                        else {
-                            String messageReceived = "Ping from client";
-                            sendMessageToServer(messageReceived);
-                            Log.d("info","Message from client : "+messageReceived);
-                        }
+                        operationComplete("_HEDE");
+//                        if (isServer) {
+//                            broadcastMessageToClients("Running Algorithm on server");
+//                            runAlgorithm();
+//                        }
+//                        else {
+//                            String messageReceived = "Ping from client";
+//                            sendMessageToServer(messageReceived);
+//                            Log.d("info","Message from client : "+messageReceived);
+//                        }
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
 					}
@@ -176,7 +184,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
 	private void disconnectFromNetwork() {
             if (isServer){
-                broadcastMessageToClients("disconnect");
+                broadcastMessageToClients("server_disconnect");
                 try {
                     serverSocket.close();
                 } catch (IOException e) {
@@ -185,7 +193,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 serverSocket = null;
             }
             else {
-                sendMessageToServer("disconnect");
+                sendMessageToServer("_disconnect");
             }
             ((DeviceActionListener) getActivity()).disconnect();
     }
@@ -252,7 +260,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             receivedProfile.socket = socket;
             receivedProfile.logDetails();
             profileSet.add(receivedProfile);
-            broadcastMessageToClients("Welcome");
+//            broadcastMessageToClients("Welcome");
             return  receivedProfile;
         }
         catch (Exception e){
@@ -285,14 +293,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private void sendMessageToServer (String message) {
         if (!isServer)
-        out.println(mydeviceId+"_"+message);
+        out.println(mydeviceId+""+message);
     }
 
-	private void broadcastMessageToClients (String msg) {
+	private void broadcastMessageToClients (String message) {
         if (isServer) {
             Iterator<DeviceProfile> it = profileSet.iterator();
             int i = 0;
-            String message = "server"+"_"+msg;
             while (it.hasNext()) {
                 try {
                     DeviceProfile dp = it.next();
@@ -309,6 +316,131 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 i++;
             }
         }
+    }
+
+    private void performCPUOperation() {
+        // ID_RES_CPU[[]]((R))
+        String output = "string recognized";
+        String message = "_RES_CPU[[" + output + "]]((R" + requestNumber + "))";
+        operationComplete(message);
+    }
+
+    private void performMEMOperation(String input) {
+        // ID_RES_MEM[[]]((R))
+        String output = "character count in "+input;
+        String message = "_RES_MEM[["+output+"]]((R"+requestNumber+"))";
+        operationComplete(message);
+    }
+
+    private void operationComplete(final String message) {
+        if (isServer) {
+            messageReceivedByServer(message);
+        }
+        else {
+            sendMessageToServer(message);
+        }
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 1000ms
+            }
+        }, 5000);
+
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
+                t.show();
+            }
+        });
+
+    }
+
+    private void messageReceivedByServer(String message) {
+        // ID_RES_CPU[[]]((R))
+        // ID_RES_MEM[[]]((R))
+        // ID_HEDE
+        if (message.contains("_RES_CPU[[")) {
+            String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+            String responseRequestNumber = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+            System.out.print("input:"+input+" responseRequestNumber:"+responseRequestNumber);
+            // ID_REQ_MEM[[]]((R))
+            String selectedProfileId = performSelection();
+            if (selectedProfileId.equals(mydeviceId) && isServer) {
+                requestNumber = Integer.parseInt(responseRequestNumber);
+                performMEMOperation(input);
+            }
+            else {
+                broadcastMessageToClients(selectedProfileId+"_REQ_MEM[["+input+"]]((R"+responseRequestNumber+"))");
+            }
+        }
+        else if (message.contains("_RES_MEM[[")) {
+            String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+            String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+            System.out.print("input:"+input+" responseRequestNumber:"+R);
+            String requestDeviceId = requestArray[Integer.parseInt(R)];
+            operationComplete(requestDeviceId+"_HEGHE[["+input+"]]");
+        }
+        else if (message.contains("_HEDE")) {
+            String requestingProfileId = message.substring(0,message.indexOf("_"));
+            requestArray[requestCount++]=requestingProfileId;
+            Log.i("info","Requesting Profile Id : "+requestingProfileId);
+            // ID_REQ_CPU((R))
+            String selectedProfileId = performSelection();
+            if (selectedProfileId.equals(mydeviceId) && isServer) {
+                requestNumber = requestCount-1;
+                performCPUOperation();
+            }
+            else {
+                broadcastMessageToClients(selectedProfileId+"_REQ_CPU((R"+(requestCount-1)+"))");
+            }
+        }
+        else if (message.contains(mydeviceId+"_HEGHE[[")) {
+            String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+            Log.i("RESULT : ",input);
+        }
+    }
+
+    private void messageReceivedByClient(String message) {
+        // ID_REQ_CPU((R))
+        // ID_REQ_MEM[[]]((R))
+        // ID_HEGHE[[]]
+        if (mydeviceId.equals(message.substring(0,message.indexOf("_")))) {
+            if (message.contains(mydeviceId+"_REQ_CPU((R")) {
+                String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+                requestNumber = Integer.parseInt(R);
+                performCPUOperation();
+            }
+            else if (message.contains(mydeviceId+"_REQ_MEM[[")) {
+                String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+                requestNumber = Integer.parseInt(R);
+                String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+                performMEMOperation(input);
+            }
+            else if (message.contains(mydeviceId+"_HEGHE[[")) {
+                String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+                Log.i("RESULT : ",input);
+            }
+        }
+    }
+
+    private String performSelection() {
+        int random = getRandom(0,profileSet.size()-1), i = 0;
+        Log.i("info","Random : "+random);
+        DeviceProfile profile = null;
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        while (it.hasNext()) {
+            profile = it.next();
+            if (i == random) {
+                Log.i("info",i+"inside Profile Id : "+profile.devId);
+                break;
+            }
+            i++;
+            Log.i("info","dsdg "+i);
+        }
+        Log.i("info","Profile Id : "+profile.devId);
+        return profile.devId;
     }
 
 	private void establishConnectionForCommunication(final WifiP2pInfo info) {
@@ -336,6 +468,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                             Log.d("info","Message Received from Client : "+messageReceived);
                                             if (messageReceived.contains("_disconnect")) {
                                                 removeProfile(messageReceived);
+                                            }
+                                            else if (messageReceived != null) {
+                                                messageReceivedByServer(messageReceived);
                                             }
 //                                            if (messageReceived == null) {
 //                                                Log.e("info","Message NULL on client #");
@@ -386,6 +521,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                             if (messageReceived == null) {
                                                 Log.e("info","Message NULL from server");
                                                 break;
+                                            }
+                                            else {
+                                                messageReceivedByClient(messageReceived);
                                             }
                                         }
                                     }
@@ -655,5 +793,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
         runRankerAlgoritm();
         runHungarianAlgorithm();
+    }
+
+    public static int getRandom(int min, int max) {
+        return (int) (Math.random() * (max+1-min)) + min;
     }
 }

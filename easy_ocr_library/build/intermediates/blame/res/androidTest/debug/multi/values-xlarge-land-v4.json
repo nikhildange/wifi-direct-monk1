@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/Users/nikhildange/proj/wifi-direct-demo-monk1/easy_ocr_library/build/intermediates/incremental/mergeDebugAndroidTestResources/merged.dir/values-xlarge-land-v4/values-xlarge-land-v4.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 63,
+                    "endOffset": 114
+                },
+                "from": {
+                    "file": "/Users/nikhildange/.android/build-cache/4ea8e82742d2a53b7d54f89421756176aad4c63e/output/res/values-xlarge-land/values-xlarge-land.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 299,
+                        "endColumn": 63,
+                        "endOffset": 358
+                    }
+                }
+            }
+        ]
+    }
+]
