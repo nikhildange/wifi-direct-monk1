@@ -19,11 +19,13 @@ public class WordUtils {
     Context context;
     TreeMap<String,Integer> map = new TreeMap<String,Integer>();
 
-    TreeMap runMem(String in,Context con,String fileName){
+    TreeMap runMem(String in,Context con,String fileArray[]){
         inputLine = in;
         context = con;
         wordInit();
-        readFile(fileName);
+        for (String fileName : fileArray) {
+            readFile(fileName);
+        }
         return map;
     }
 

@@ -115,7 +115,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
-    boolean runOnYourOwnMode = false;
+    boolean runOnYourOwnMode = true;
 
     private TessOCR mTessOCR;
     private static final String TAG = "info";
@@ -125,6 +125,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     TimingLogger timerLogger;
     //    TextView textView;
     private ProgressDialog mProgressDialog;
+    private Bitmap imageArray[] = new Bitmap[5];
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -352,7 +353,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             String requestDeviceId = requestArray[Integer.parseInt(R)];
             displayMessage(requestDeviceId+"in the Array at pos "+Integer.parseInt(R));
             String hegheMessage = requestDeviceId+"_HEGHE[[" + input + "]]";
-            if (requestDeviceId == mydeviceId && isServer) {
+            if (requestDeviceId.equals(mydeviceId)) {
                 messageReceivedByServer(hegheMessage);
             }
             else {
@@ -780,8 +781,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     public void onStartOCRClick(){
         displayMessage("Process OCR Begin");
-        timerLogger = new TimingLogger(TAG, "Started OCR");
-        doOCR(getBitmapFromAsset(getActivity().getApplicationContext(),"img1.jpg"));
+        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img1.png");
+        imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img2.png");
+        imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img3.png");
+        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img4.png");
+        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img5.png");
+//        timerLogger = new TimingLogger(TAG, "Started OCR");
+        doOCR();
     }
 
     public void prepareOCR() {
@@ -827,20 +833,25 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         mTessOCR =new TessOCR();
     }
 
-    public void doOCR(final Bitmap bitmap) {
-        try {
-            if (mProgressDialog == null) {
-//                mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
-//                        "Please wait...", true);
-                // mResult.setVisibility(V.ViewISIBLE);
-            } else {
-//                mProgressDialog.show();
-            }
+    public void doOCR() {
             try {
                 new Thread(new Runnable() {
                     public void run() {
-                        timerLogger.addSplit("Started OCR");
-                        final String result = mTessOCR.getOCRResult(bitmap).toLowerCase();
+//                        timerLogger.addSplit("Started OCR");
+                        getActivity().runOnUiThread(new Runnable() {
+                            public void run() {
+                        if (mProgressDialog == null) {
+                                mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
+                                        "Please wait...", true);
+                            } else {
+                                mProgressDialog.show();
+                            }}});
+
+                        String recognisedString = "";
+                        for (Bitmap bitmap : imageArray) {
+                            recognisedString = recognisedString + " " + mTessOCR.getOCRResult(bitmap).toLowerCase();
+                        }
+                        final String result = recognisedString;
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -855,8 +866,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 else {
                                     displayMessage("Invalid Result of OCR : "+result);
                                 }
-//                                mProgressDialog.dismiss();
-                                timerLogger.addSplit("Completed OCR");
+                                mProgressDialog.dismiss();
+//                                timerLogger.addSplit("Completed OCR");
                             }
                         });
                     }
@@ -866,10 +877,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             } catch (Exception e) {
                 Log.e(TAG, "Exception in OCR : " + e);
             }
-        }
-        catch (Exception e) {
-            Log.e(TAG,"Exception in PROGRESS BAR : "+e);
-        }
     }
 
 
@@ -890,7 +897,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
             }
         }
-        timerLogger.addSplit("Got Bitmap Image");
+//        timerLogger.addSplit("Got Bitmap Image");
         return bitmap;
     }
 
@@ -905,23 +912,33 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         });
     }
 
-    String memOperation(String fileName,String inputLine){
-        Context c = this.getActivity().getApplicationContext();
-        WordUtils obj = new WordUtils();
-        TreeMap map =  obj.runMem(inputLine, c,fileName);
-        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
-        String output = " ";
-        for(Map.Entry<String,Integer> entry : entrySet){
-            String values = entry.getValue() + "\t" + entry.getKey()+"\t ";
-            System.out.println(values);
-            output = output + values;
-        }
-        System.out.println("Total Words scanned till now : "+obj.totalCount);
-        output = output + "Total Words scanned till now : "+obj.totalCount;
-        output = output.replace("\n","\t");
-        displayMessage("MEM Result : "+output);
-        completedMEMOperation(output);
-        return output;
+    void memOperation(final String inputLine){
+        final Context c = this.getActivity().getApplicationContext();
+
+        new Thread(new Runnable() {
+            public void run() {
+                WordUtils obj = new WordUtils();
+                String fileArray[] = {"ebook1.txt","ebook2.txt","ebook3.txt","ebook4.txt"};
+                TreeMap map;
+                map = obj.runMem(inputLine, c, fileArray);
+                final Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
+                String output = " ";
+                for(Map.Entry<String,Integer> entry : entrySet){
+                    String values = entry.getValue() + "\t" + entry.getKey()+"\t ";
+                    System.out.println(values);
+                    output = output + values;
+                }
+                System.out.println("Total Words scanned till now : "+obj.totalCount);
+                output = output + "Total Words scanned till now : "+obj.totalCount;
+                output = output.replace("\n","\t");
+                final String finalOutput = output;
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        displayMessage("MEM Result : "+finalOutput);
+                        completedMEMOperation(finalOutput);
+                    }});
+            }}).start();
     }
 
     private void performCPUOperation() {
@@ -931,7 +948,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private void performMEMOperation(String input) {
         // ID_RES_MEM[[]]((R))
-        memOperation("ebook1.txt",input);
+        memOperation(input);
     }
 
     void startOperation() {
