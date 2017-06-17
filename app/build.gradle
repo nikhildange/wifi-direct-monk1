@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 16
+    compileSdkVersion 22
     buildToolsVersion "25.0.0"
 
     defaultConfig {
         applicationId "com.example.android.wifidirect"
         minSdkVersion 14
-        targetSdkVersion 14
+        targetSdkVersion 22
     }
 
     buildTypes {
@@ -16,4 +16,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "2g"
+        dexInProcess = true
+    }
+}
+dependencies {
+    compile 'com.rmtheis:tess-two:5.4.1'
 }

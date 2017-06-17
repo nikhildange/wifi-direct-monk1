@@ -43,13 +43,18 @@ import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
+import java.util.TreeMap;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -63,9 +68,9 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.text.format.Formatter;
 import android.util.Log;
+import android.util.TimingLogger;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,17 +87,17 @@ import static android.content.Context.WIFI_SERVICE;
  */
 public class DeviceDetailFragment extends Fragment implements ConnectionInfoListener {
 
-	public static final String IP_SERVER = "192.168.49.1";
-	public static int PORT = 8988;
-	private static boolean server_running = false;
+    public static final String IP_SERVER = "192.168.49.1";
+    public static int PORT = 8988;
+    private static boolean server_running = false;
     private static final int SOCKET_TIMEOUT = 5000;
 
-	protected static final int CHOOSE_FILE_RESULT_CODE = 20;
+    protected static final int CHOOSE_FILE_RESULT_CODE = 20;
     private boolean isServer = false;
-	private View mContentView = null;
-	private WifiP2pDevice device;
-	private WifiP2pInfo info;
-	ProgressDialog progressDialog = null;
+    private View mContentView = null;
+    private WifiP2pDevice device;
+    private WifiP2pInfo info;
+    ProgressDialog progressDialog = null;
 
     /*For server side*/
     ServerSocket serverSocket = null;
@@ -110,13 +115,22 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
-	}
+    private TessOCR mTessOCR;
+    private static final String TAG = "tag";
+    public static final String lang = "eng";
+    public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/AppOCR/";
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    TimingLogger timerLogger;
+    //    TextView textView;
+    private ProgressDialog mProgressDialog;
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         numberOfCapablity = 3;
 
@@ -125,46 +139,48 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         profileSet.add(deviceProfile);
         deviceProfile.logDetails();
 
-		mContentView = inflater.inflate(R.layout.device_detail, null);
-		mContentView.findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
+        prepareOCR();
 
-			@Override
-			public void onClick(View v) {
-				WifiP2pConfig config = new WifiP2pConfig();
-				config.deviceAddress = device.deviceAddress;
-				config.wps.setup = WpsInfo.PBC;
-				if (progressDialog != null && progressDialog.isShowing()) {
-					progressDialog.dismiss();
-				}
-				progressDialog = ProgressDialog.show(getActivity(), "Press back to cancel",
-						"Connecting to :" + device.deviceAddress, true, true
-						//                        new DialogInterface.OnCancelListener() {
-						//
-						//                            @Override
-						//                            public void onCancel(DialogInterface dialog) {
-						//                                ((DeviceActionListener) getActivity()).cancelDisconnect();
-						//                            }
-						//                        }
-				);
-				((DeviceActionListener) getActivity()).connect(config);
+        mContentView = inflater.inflate(R.layout.device_detail, null);
+        mContentView.findViewById(R.id.btn_connect).setOnClickListener(new View.OnClickListener() {
 
-			}
-		});
+            @Override
+            public void onClick(View v) {
+                WifiP2pConfig config = new WifiP2pConfig();
+                config.deviceAddress = device.deviceAddress;
+                config.wps.setup = WpsInfo.PBC;
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
+                progressDialog = ProgressDialog.show(getActivity(), "Press back to cancel",
+                        "Connecting to :" + device.deviceAddress, true, true
+                        //                        new DialogInterface.OnCancelListener() {
+                        //
+                        //                            @Override
+                        //                            public void onCancel(DialogInterface dialog) {
+                        //                                ((DeviceActionListener) getActivity()).cancelDisconnect();
+                        //                            }
+                        //                        }
+                );
+                ((DeviceActionListener) getActivity()).connect(config);
 
-		mContentView.findViewById(R.id.btn_disconnect).setOnClickListener(
-				new View.OnClickListener() {
-					@Override
-					public void onClick(View v) {
+            }
+        });
+
+        mContentView.findViewById(R.id.btn_disconnect).setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                         disconnectFromNetwork();
-					}
-				});
+                    }
+                });
 
-		mContentView.findViewById(R.id.btn_start_client).setOnClickListener(
-				new View.OnClickListener() {
+        mContentView.findViewById(R.id.btn_start_client).setOnClickListener(
+                new View.OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-                        operationComplete("_HEDE");
+                    @Override
+                    public void onClick(View v) {
+                        onStartOCRClick();
 //                        if (isServer) {
 //                            broadcastMessageToClients("Running Algorithm on server");
 //                            runAlgorithm();
@@ -176,61 +192,60 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                        }
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
-					}
-				});
-
-		return mContentView;
-	}
-
-	private void disconnectFromNetwork() {
-            if (isServer){
-                broadcastMessageToClients("server_disconnect");
-                try {
-                    serverSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                serverSocket = null;
-            }
-            else {
-                sendMessageToServer("_disconnect");
-            }
-            ((DeviceActionListener) getActivity()).disconnect();
+                    }
+                });
+        return mContentView;
     }
 
-	@Override
-	public void onConnectionInfoAvailable(final WifiP2pInfo info) {
-		if (progressDialog != null && progressDialog.isShowing()) {
-			progressDialog.dismiss();
-		}
-		this.info = info;
-		this.getView().setVisibility(View.VISIBLE);
+    private void disconnectFromNetwork() {
+        if (isServer){
+            broadcastMessageToClients("server_disconnect");
+            try {
+                serverSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            serverSocket = null;
+        }
+        else {
+            sendMessageToServer("_disconnect");
+        }
+        ((DeviceActionListener) getActivity()).disconnect();
+    }
+
+    @Override
+    public void onConnectionInfoAvailable(final WifiP2pInfo info) {
+        if (progressDialog != null && progressDialog.isShowing()) {
+            progressDialog.dismiss();
+        }
+        this.info = info;
+        this.getView().setVisibility(View.VISIBLE);
 
         isServer = ((info.isGroupOwner == true) ?  true : false);
 
-		// The owner IP is now known.
-		TextView view = (TextView) mContentView.findViewById(R.id.group_owner);
-		view.setText(getResources().getString(R.string.group_owner_text)
-				+ ((info.isGroupOwner == true) ? getResources().getString(R.string.yes)
-						: getResources().getString(R.string.no)));
+        // The owner IP is now known.
+        TextView view = (TextView) mContentView.findViewById(R.id.group_owner);
+        view.setText(getResources().getString(R.string.group_owner_text)
+                + ((info.isGroupOwner == true) ? getResources().getString(R.string.yes)
+                : getResources().getString(R.string.no)));
 
-		// InetAddress from WifiP2pInfo struct.
-		view = (TextView) mContentView.findViewById(R.id.device_info);
-		view.setText("Group Owner IP - " + info.groupOwnerAddress.getHostAddress());
+        // InetAddress from WifiP2pInfo struct.
+        view = (TextView) mContentView.findViewById(R.id.device_info);
+        view.setText("Group Owner IP - " + info.groupOwnerAddress.getHostAddress());
 
-		mContentView.findViewById(R.id.btn_start_client).setVisibility(View.VISIBLE);
+        mContentView.findViewById(R.id.btn_start_client).setVisibility(View.VISIBLE);
 
-		if (!server_running){
-			new ServerAsyncTask(getActivity(), mContentView.findViewById(R.id.status_text)).execute();
-			server_running = true;
-		}
+        if (!server_running){
+            new ServerAsyncTask(getActivity(), mContentView.findViewById(R.id.status_text)).execute();
+            server_running = true;
+        }
 
-		// hide the connect button
-		mContentView.findViewById(R.id.btn_connect).setVisibility(View.GONE);
-		establishConnectionForCommunication(info);
-	}
+        // hide the connect button
+        mContentView.findViewById(R.id.btn_connect).setVisibility(View.GONE);
+        establishConnectionForCommunication(info);
+    }
 
-	private void sendProfile(Socket socket) {
+    private void sendProfile(Socket socket) {
         try {
             OutputStream os = socket.getOutputStream();
             ObjectOutputStream oos = new ObjectOutputStream(os);
@@ -293,10 +308,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private void sendMessageToServer (String message) {
         if (!isServer)
-        out.println(mydeviceId+""+message);
+            out.println(mydeviceId+""+message);
     }
 
-	private void broadcastMessageToClients (String message) {
+    private void broadcastMessageToClients (String message) {
         if (isServer) {
             Iterator<DeviceProfile> it = profileSet.iterator();
             int i = 0;
@@ -320,15 +335,30 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private void performCPUOperation() {
         // ID_RES_CPU[[]]((R))
-        String output = "string recognized";
-        String message = "_RES_CPU[[" + output + "]]((R" + requestNumber + "))";
-        operationComplete(message);
+        onStartOCRClick();
+//        String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
+//        operationComplete(message);
+    }
+
+    String memOperation(String fileName,String inputLine){
+        Context c = this.getActivity().getApplicationContext();
+        WordUtils obj = new WordUtils();
+        TreeMap map =  obj.runMem(inputLine, c,fileName);
+        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
+        String output = " ";
+        for(Map.Entry<String,Integer> entry : entrySet){
+            String values = entry.getValue() + "\t" + entry.getKey()+"\t \n ";
+            System.out.println(values);
+            output = output + values;
+        }
+        System.out.println("Total Words scanned till now : "+obj.totalCount);
+        output = output + "Total Words scanned till now : "+obj.totalCount;
+        return output;
     }
 
     private void performMEMOperation(String input) {
         // ID_RES_MEM[[]]((R))
-        String output = "character count in "+input;
-        String message = "_RES_MEM[["+output+"]]((R"+requestNumber+"))";
+        String message = "_RES_MEM[["+memOperation("ebook1.txt",input)+"]]((R"+requestNumber+"))";
         operationComplete(message);
     }
 
@@ -443,231 +473,230 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         return profile.devId;
     }
 
-	private void establishConnectionForCommunication(final WifiP2pInfo info) {
-			if (info.groupFormed && info.isGroupOwner) {
-				Thread serverThread = new Thread(
-						new Runnable() {
-							@Override
-							public void run() {
-								try {
-									int port = 8986;
-									Log.d("info","Started Server Thread");
-                                    if (serverSocket == null)
-                                            serverSocket = new ServerSocket(port);
+    private void establishConnectionForCommunication(final WifiP2pInfo info) {
+        if (info.groupFormed && info.isGroupOwner) {
+            Thread serverThread = new Thread(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                int port = 8986;
+                                Log.d("info","Started Server Thread");
+                                if (serverSocket == null)
+                                    serverSocket = new ServerSocket(port);
 //									ServerSocket serverSocket = new ServerSocket();
 //									serverSocket.setReuseAddress(true);
 //									serverSocket.bind(new InetSocketAddress(port));
-                                    Socket client = serverSocket.accept();
-                                    receiveProfile(client);
-                                    BufferedReader in = new BufferedReader(
-                                            new InputStreamReader(client.getInputStream()));
-                                    PrintWriter out = new PrintWriter(client.getOutputStream(), true);
-                                    try {
-                                        while(true ) {
-                                            String messageReceived = in.readLine();
-                                            Log.d("info","Message Received from Client : "+messageReceived);
-                                            if (messageReceived.contains("_disconnect")) {
-                                                removeProfile(messageReceived);
-                                            }
-                                            else if (messageReceived != null) {
-                                                messageReceivedByServer(messageReceived);
-                                            }
+                                Socket client = serverSocket.accept();
+                                receiveProfile(client);
+                                BufferedReader in = new BufferedReader(
+                                        new InputStreamReader(client.getInputStream()));
+                                PrintWriter out = new PrintWriter(client.getOutputStream(), true);
+                                try {
+                                    while(true ) {
+                                        String messageReceived = in.readLine();
+                                        Log.d("info","Message Received from Client : "+messageReceived);
+                                        if (messageReceived.contains("_disconnect")) {
+                                            removeProfile(messageReceived);
+                                        }
+                                        else if (messageReceived != null) {
+                                            messageReceivedByServer(messageReceived);
+                                        }
 //                                            if (messageReceived == null) {
 //                                                Log.e("info","Message NULL on client #");
 //                                                break;
 //                                            }
-                                        }
                                     }
-                                    catch (Exception e) {
-                                        Log.i("info","Exception in Server : "+e+" on client #");
-                                    }
-                                    finally {
+                                }
+                                catch (Exception e) {
+                                    Log.i("info","Exception in Server : "+e+" on client #");
+                                }
+                                finally {
 //                                        in.close();
 //                                        out.close();
 //                                        client.close();
-                                    }
-								} catch (Exception e){
-                                    Log.e("info","Error : " + e);
-									e.printStackTrace();
-								}
+                                }
+                            } catch (Exception e){
+                                Log.e("info","Error : " + e);
+                                e.printStackTrace();
                             }
-						}
-				);
-				serverThread.start();
-			}
-			else if (info.groupFormed) {
-                Thread clientThread = new Thread(
-                        new Runnable() {
-                            @Override
-                            public void run() {
+                        }
+                    }
+            );
+            serverThread.start();
+        }
+        else if (info.groupFormed) {
+            Thread clientThread = new Thread(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Socket server = new Socket();
+                                InetAddress serverIPAddress = info.groupOwnerAddress;
+                                int portClient = 8986;
+                                server.bind(null);
+                                server.connect(new InetSocketAddress(serverIPAddress, portClient), SOCKET_TIMEOUT);
+                                sendProfile(server);
+                                in = new BufferedReader(
+                                        new InputStreamReader(server.getInputStream()));
+                                out = new PrintWriter(server.getOutputStream(), true);
                                 try {
-                                    Socket server = new Socket();
-                                    InetAddress serverIPAddress = info.groupOwnerAddress;
-                                    int portClient = 8986;
-                                    server.bind(null);
-                                    server.connect(new InetSocketAddress(serverIPAddress, portClient), SOCKET_TIMEOUT);
-                                    sendProfile(server);
-                                    in = new BufferedReader(
-                                            new InputStreamReader(server.getInputStream()));
-                                    out = new PrintWriter(server.getOutputStream(), true);
-                                    try {
-                                        while (true) {
-                                            String messageReceived = in.readLine();
-                                            Log.d("info","Message Received from Server : "+messageReceived);
-                                            if (messageReceived.equals("server_disconnect")) {
-                                                Log.e("info","Message NULL from server");
-                                                break;
-                                            }
-                                            if (messageReceived == null) {
-                                                Log.e("info","Message NULL from server");
-                                                break;
-                                            }
-                                            else {
-                                                messageReceivedByClient(messageReceived);
-                                            }
+                                    while (true) {
+                                        String messageReceived = in.readLine();
+                                        Log.d("info","Message Received from Server : "+messageReceived);
+                                        if (messageReceived.equals("server_disconnect")) {
+                                            Log.e("info","Message NULL from server");
+                                            break;
+                                        }
+                                        if (messageReceived == null) {
+                                            Log.e("info","Message NULL from server");
+                                            break;
+                                        }
+                                        else {
+                                            messageReceivedByClient(messageReceived);
                                         }
                                     }
-                                    catch (Exception e) {
-                                        Log.i("info","Exception in Client : "+e);
-                                    }
-                                    finally {
+                                }
+                                catch (Exception e) {
+                                    Log.i("info","Exception in Client : "+e);
+                                }
+                                finally {
 //                                        in.close();
 //                                        out.close();
 //                                        server.close();
-                                    }
-                                }
-                                catch (IOException e) {
-                                    Log.e("info","Error : " + e);
-                                    e.printStackTrace();
                                 }
                             }
+                            catch (IOException e) {
+                                Log.e("info","Error : " + e);
+                                e.printStackTrace();
+                            }
                         }
-                );
-                clientThread.start();
+                    }
+            );
+            clientThread.start();
+        }
+    }
+
+    /**
+     * Updates the UI with device data
+     *
+     * @param device the device to be displayed
+     */
+    public void showDetails(WifiP2pDevice device) {
+        this.device = device;
+        this.getView().setVisibility(View.VISIBLE);
+        TextView view = (TextView) mContentView.findViewById(R.id.device_address);
+        view.setText(device.deviceAddress);
+        view = (TextView) mContentView.findViewById(R.id.device_info);
+        view.setText(device.toString());
+
+    }
+
+    /**
+     * Clears the UI fields after a disconnect or direct mode disable operation.
+     */
+    public void resetViews() {
+        mContentView.findViewById(R.id.btn_connect).setVisibility(View.VISIBLE);
+        TextView view = (TextView) mContentView.findViewById(R.id.device_address);
+        view.setText(R.string.empty);
+        view = (TextView) mContentView.findViewById(R.id.device_info);
+        view.setText(R.string.empty);
+        view = (TextView) mContentView.findViewById(R.id.group_owner);
+        view.setText(R.string.empty);
+        view = (TextView) mContentView.findViewById(R.id.status_text);
+        view.setText(R.string.empty);
+        mContentView.findViewById(R.id.btn_start_client).setVisibility(View.GONE);
+        this.getView().setVisibility(View.GONE);
+    }
+
+    /**
+     * A simple server socket that accepts connection and writes some data on
+     * the stream.
+     */
+    public static class ServerAsyncTask extends AsyncTask<Void, Void, String> {
+
+        private final Context context;
+        private final TextView statusText;
+
+        /**
+         * @param context
+         * @param statusText
+         */
+        public ServerAsyncTask(Context context, View statusText) {
+            this.context = context;
+            this.statusText = (TextView) statusText;
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            try {
+                ServerSocket serverSocket = new ServerSocket(PORT);
+                Log.d(WiFiDirectActivity.TAG, "Server: Socket opened");
+                Socket client = serverSocket.accept();
+                Log.d(WiFiDirectActivity.TAG, "Server: connection done");
+                final File f = new File(Environment.getExternalStorageDirectory() + "/"
+                        + context.getPackageName() + "/wifip2pshared-" + System.currentTimeMillis()
+                        + ".jpg");
+
+                File dirs = new File(f.getParent());
+                if (!dirs.exists())
+                    dirs.mkdirs();
+                f.createNewFile();
+
+                Log.d(WiFiDirectActivity.TAG, "server: copying files " + f.toString());
+                InputStream inputstream = client.getInputStream();
+                copyFile(inputstream, new FileOutputStream(f));
+                serverSocket.close();
+                server_running = false;
+                return f.getAbsolutePath();
+            } catch (IOException e) {
+                Log.e(WiFiDirectActivity.TAG, e.getMessage());
+                return null;
             }
-	}
+        }
 
-	/**
-	 * Updates the UI with device data
-	 * 
-	 * @param device the device to be displayed
-	 */
-	public void showDetails(WifiP2pDevice device) {
-		this.device = device;
-		this.getView().setVisibility(View.VISIBLE);
-		TextView view = (TextView) mContentView.findViewById(R.id.device_address);
-		view.setText(device.deviceAddress);
-		view = (TextView) mContentView.findViewById(R.id.device_info);
-		view.setText(device.toString());
+        /*
+         * (non-Javadoc)
+         * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
+         */
+        @Override
+        protected void onPostExecute(String result) {
+            if (result != null) {
+                statusText.setText("File copied - " + result);
+                Intent intent = new Intent();
+                intent.setAction(android.content.Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse("file://" + result), "image/*");
+                context.startActivity(intent);
+            }
+        }
 
-	}
+        /*
+         * (non-Javadoc)
+         * @see android.os.AsyncTask#onPreExecute()
+         */
+        @Override
+        protected void onPreExecute() {
+            statusText.setText("Opening a server socket");
+        }
 
-	/**
-	 * Clears the UI fields after a disconnect or direct mode disable operation.
-	 */
-	public void resetViews() {
-		mContentView.findViewById(R.id.btn_connect).setVisibility(View.VISIBLE);
-		TextView view = (TextView) mContentView.findViewById(R.id.device_address);
-		view.setText(R.string.empty);
-		view = (TextView) mContentView.findViewById(R.id.device_info);
-		view.setText(R.string.empty);
-		view = (TextView) mContentView.findViewById(R.id.group_owner);
-		view.setText(R.string.empty);
-		view = (TextView) mContentView.findViewById(R.id.status_text);
-		view.setText(R.string.empty);
-		mContentView.findViewById(R.id.btn_start_client).setVisibility(View.GONE);
-		this.getView().setVisibility(View.GONE);
-	}
+    }
 
-	/**
-	 * A simple server socket that accepts connection and writes some data on
-	 * the stream.
-	 */
-	public static class ServerAsyncTask extends AsyncTask<Void, Void, String> {
+    public static boolean copyFile(InputStream inputStream, OutputStream out) {
+        byte buf[] = new byte[1024];
+        int len;
+        try {
+            while ((len = inputStream.read(buf)) != -1) {
+                out.write(buf, 0, len);
 
-		private final Context context;
-		private final TextView statusText;
-
-		/**
-		 * @param context
-		 * @param statusText
-		 */
-		public ServerAsyncTask(Context context, View statusText) {
-			this.context = context;
-			this.statusText = (TextView) statusText;
-		}
-
-		@Override
-		protected String doInBackground(Void... params) {
-			try {
-				ServerSocket serverSocket = new ServerSocket(PORT);
-				Log.d(WiFiDirectActivity.TAG, "Server: Socket opened");
-				Socket client = serverSocket.accept();
-				Log.d(WiFiDirectActivity.TAG, "Server: connection done");
-				final File f = new File(Environment.getExternalStorageDirectory() + "/"
-						+ context.getPackageName() + "/wifip2pshared-" + System.currentTimeMillis()
-						+ ".jpg");
-
-				File dirs = new File(f.getParent());
-				if (!dirs.exists())
-					dirs.mkdirs();
-				f.createNewFile();
-
-				Log.d(WiFiDirectActivity.TAG, "server: copying files " + f.toString());
-				InputStream inputstream = client.getInputStream();
-				copyFile(inputstream, new FileOutputStream(f));
-				serverSocket.close();
-				server_running = false;
-				return f.getAbsolutePath();
-			} catch (IOException e) {
-				Log.e(WiFiDirectActivity.TAG, e.getMessage());
-				return null;
-			}
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPostExecute(java.lang.Object)
-		 */
-		@Override
-		protected void onPostExecute(String result) {
-			if (result != null) {
-				statusText.setText("File copied - " + result);
-				Intent intent = new Intent();
-				intent.setAction(android.content.Intent.ACTION_VIEW);
-				intent.setDataAndType(Uri.parse("file://" + result), "image/*");
-				context.startActivity(intent);
-			}
-
-		}
-
-		/*
-		 * (non-Javadoc)
-		 * @see android.os.AsyncTask#onPreExecute()
-		 */
-		@Override
-		protected void onPreExecute() {
-			statusText.setText("Opening a server socket");
-		}
-
-	}
-
-	public static boolean copyFile(InputStream inputStream, OutputStream out) {
-		byte buf[] = new byte[1024];
-		int len;
-		try {
-			while ((len = inputStream.read(buf)) != -1) {
-				out.write(buf, 0, len);
-
-			}
-			out.close();
-			inputStream.close();
-		} catch (IOException e) {
-			Log.d(WiFiDirectActivity.TAG, e.toString());
-			return false;
-		}
-		return true;
-	}
+            }
+            out.close();
+            inputStream.close();
+        } catch (IOException e) {
+            Log.d(WiFiDirectActivity.TAG, e.toString());
+            return false;
+        }
+        return true;
+    }
 
     public void printMat(int[][] matrix,int row,int col){
         for(int r=0; r<row;r++){
@@ -798,4 +827,108 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     public static int getRandom(int min, int max) {
         return (int) (Math.random() * (max+1-min)) + min;
     }
+
+    public void onStartOCRClick(){
+        Log.v(TAG, "Process OCR Begin");
+        timerLogger = new TimingLogger(TAG, "Started OCR");
+        doOCR(getBitmapFromAsset(getActivity().getApplicationContext(),"img1.jpg"));
+    }
+
+    public void prepareOCR() {
+        String[] paths = new String[] { DATA_PATH, DATA_PATH + "tessdata/" };
+        for (String path : paths) {
+            File dir = new File(path);
+            if (!dir.exists()) {
+                if (!dir.mkdirs()) {
+                    Log.v("Main", "ERROR: Creation of directory " + path + " on sdcard failed");
+                    break;
+                } else {
+                    Log.v("Main", "Created directory " + path + " on sdcard");
+                }
+            }
+
+        }
+        if (!(new File(DATA_PATH + "tessdata/" + lang + ".traineddata")).exists()) {
+            try {
+
+                AssetManager assetManager = getActivity().getAssets();
+
+                InputStream in = assetManager.open(lang + ".traineddata");
+                //GZIPInputStream gin = new GZIPInputStream(in);
+                OutputStream out = new FileOutputStream(DATA_PATH
+                        + "tessdata/" + lang + ".traineddata");
+
+                // Transfer bytes from in to out
+                byte[] buf = new byte[1024];
+                int len;
+                //while ((lenf = gin.read(buff)) > 0) {
+                while ((len = in.read(buf)) > 0) {
+                    out.write(buf, 0, len);
+                }
+                in.close();
+                //gin.close();
+                out.close();
+
+                Log.v(TAG, "Copied " + lang + " traineddata");
+            } catch (IOException e) {
+                Log.e(TAG, "Was unable to copy " + lang + " traineddata " + e.toString());
+            }
+        }
+        mTessOCR =new TessOCR();
+    }
+
+    public void doOCR(final Bitmap bitmap) {
+        if (mProgressDialog == null) {
+            mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
+                    "Please wait...", true);
+            // mResult.setVisibility(V.ViewISIBLE);
+        }
+        else {
+            mProgressDialog.show();
+        }
+        new Thread(new Runnable() {
+            public void run() {
+                timerLogger.addSplit("Started OCR");
+                final String result = mTessOCR.getOCRResult(bitmap).toLowerCase();
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        // TODO Auto-generated method stub
+                        if (result != null && !result.equals("")) {
+                            String s = result.trim();
+//                            textView.setText(result);
+                            Log.v(TAG,"Result : "+result);
+                            String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
+                            operationComplete(message);
+                        }
+                        mProgressDialog.dismiss();
+                        timerLogger.addSplit("Completed OCR");
+                    }
+                });
+            };
+        }).start();
+    }
+
+
+    public Bitmap getBitmapFromAsset(Context context, String filePath) {
+        AssetManager assetManager = context.getAssets();
+        InputStream is = null;
+        Bitmap bitmap = null;
+        try {
+            is = assetManager.open(filePath);
+            bitmap = BitmapFactory.decodeStream(is);
+        } catch (final IOException e) {
+            bitmap = null;
+        } finally {
+            if (is != null) {
+                try {
+                    is.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+        timerLogger.addSplit("Got Bitmap Image");
+        return bitmap;
+    }
+
 }

@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-v21/abc_btn_colored_material.xml",
+        "source": "/Users/nikhildange/.android/build-cache/246c0a71d7e5ee74b769af1c98fcf5b0a1085324/output/res/drawable-v21/abc_btn_colored_material.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-v21/notification_action_background.xml",
+        "source": "/Users/nikhildange/.android/build-cache/246c0a71d7e5ee74b769af1c98fcf5b0a1085324/output/res/drawable-v21/notification_action_background.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-v21/abc_action_bar_item_background_material.xml",
+        "source": "/Users/nikhildange/.android/build-cache/246c0a71d7e5ee74b769af1c98fcf5b0a1085324/output/res/drawable-v21/abc_action_bar_item_background_material.xml"
+    },
+    {
+        "merged": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/merged/debug/drawable-v21/abc_edit_text_material.xml",
+        "source": "/Users/nikhildange/.android/build-cache/246c0a71d7e5ee74b769af1c98fcf5b0a1085324/output/res/drawable-v21/abc_edit_text_material.xml"
+    }
+]

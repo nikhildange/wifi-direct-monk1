@@ -17,6 +17,7 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:2:11-69
 uses-sdk
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:5:5-44
+MERGED from [com.rmtheis:tess-two:5.4.1] /Users/nikhildange/.android/build-cache/8f3dda6430460c0eb9e49fa7ec4b2c6034c82997/output/AndroidManifest.xml:22:5-24:41
 	android:targetSdkVersion
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
