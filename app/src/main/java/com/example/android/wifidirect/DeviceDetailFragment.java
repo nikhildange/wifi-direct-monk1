@@ -115,8 +115,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
+    boolean runOnYourOwnMode = false;
+
     private TessOCR mTessOCR;
-    private static final String TAG = "tag";
+    private static final String TAG = "info";
     public static final String lang = "eng";
     public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/AppOCR/";
 
@@ -180,16 +182,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                        onStartOCRClick();
-//                        if (isServer) {
-//                            broadcastMessageToClients("Running Algorithm on server");
-//                            runAlgorithm();
-//                        }
-//                        else {
-//                            String messageReceived = "Ping from client";
-//                            sendMessageToServer(messageReceived);
-//                            Log.d("info","Message from client : "+messageReceived);
-//                        }
+                            startOperation();
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
                     }
@@ -255,11 +248,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             oos.writeObject(deviceProfile);
 //            oos.close();
 //            os.close();
-            Log.i("info","Profile Sent:");
+            displayMessage("Profile Sent:");
             deviceProfile.logDetails();
         }
         catch (Exception e){
-            Log.e("info", "Exception Error : " + e);
+            Log.e(TAG, "Exception Error : " + e);
             e.printStackTrace();
         }
     }
@@ -271,7 +264,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             DeviceProfile receivedProfile = (DeviceProfile)ois.readObject();
 //            ois.close();
 //            is.close();
-            Log.i("info","Profile Received:");
+            displayMessage("Profile Received:");
             receivedProfile.socket = socket;
             receivedProfile.logDetails();
             profileSet.add(receivedProfile);
@@ -279,7 +272,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             return  receivedProfile;
         }
         catch (Exception e){
-            Log.e("info", "Exception Error : " + e);
+            Log.e(TAG, "Exception Error : " + e);
             e.printStackTrace();
         }
         return null;
@@ -293,7 +286,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 DeviceProfile devProfile = it.next();
                 String nextDeviceId = devProfile.devId;
                 if (nextDeviceId.equals(exitingDeviceId)) {
-                    Log.i("info","Removing Profile :");
+                    displayMessage("Removing Profile :");
                     devProfile.logDetails();
                     try {
                         devProfile.socket.close();
@@ -319,13 +312,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 try {
                     DeviceProfile dp = it.next();
                     if (!dp.devId.equals(mydeviceId)) {
-                        Log.i("info","Sending Message to #"+(i+1)+" client : "+message);
+                        displayMessage("Sending Message to #"+(i+1)+" client : "+message);
                         Socket client = dp.socket;
                         out = new PrintWriter(client.getOutputStream(), true);
                         out.println(message);
                     }
                 } catch (IOException e) {
-                    Log.e("info", "Error broadcasting to client's " + e);
+                    Log.e(TAG, "Error broadcasting to client's " + e);
                     e.printStackTrace();
                 }
                 i++;
@@ -333,64 +326,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
     }
 
-    private void performCPUOperation() {
-        // ID_RES_CPU[[]]((R))
-        onStartOCRClick();
-//        String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
-//        operationComplete(message);
-    }
-
-    String memOperation(String fileName,String inputLine){
-        Context c = this.getActivity().getApplicationContext();
-        WordUtils obj = new WordUtils();
-        TreeMap map =  obj.runMem(inputLine, c,fileName);
-        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
-        String output = " ";
-        for(Map.Entry<String,Integer> entry : entrySet){
-            String values = entry.getValue() + "\t" + entry.getKey()+"\t \n ";
-            System.out.println(values);
-            output = output + values;
-        }
-        System.out.println("Total Words scanned till now : "+obj.totalCount);
-        output = output + "Total Words scanned till now : "+obj.totalCount;
-        return output;
-    }
-
-    private void performMEMOperation(String input) {
-        // ID_RES_MEM[[]]((R))
-        String message = "_RES_MEM[["+memOperation("ebook1.txt",input)+"]]((R"+requestNumber+"))";
-        operationComplete(message);
-    }
-
-    private void operationComplete(final String message) {
-        if (isServer) {
-            messageReceivedByServer(message);
-        }
-        else {
-            sendMessageToServer(message);
-        }
-
-        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Do something after 5s = 1000ms
-            }
-        }, 5000);
-
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
-                t.show();
-            }
-        });
-
-    }
-
     private void messageReceivedByServer(String message) {
         // ID_RES_CPU[[]]((R))
         // ID_RES_MEM[[]]((R))
         // ID_HEDE
+
         if (message.contains("_RES_CPU[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
             String responseRequestNumber = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
@@ -410,12 +350,19 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
             System.out.print("input:"+input+" responseRequestNumber:"+R);
             String requestDeviceId = requestArray[Integer.parseInt(R)];
-            operationComplete(requestDeviceId+"_HEGHE[["+input+"]]");
+            displayMessage(requestDeviceId+"in the Array at pos "+Integer.parseInt(R));
+            String hegheMessage = requestDeviceId+"_HEGHE[[" + input + "]]";
+            if (requestDeviceId == mydeviceId && isServer) {
+                messageReceivedByServer(hegheMessage);
+            }
+            else {
+                broadcastMessageToClients(hegheMessage);
+            }
         }
         else if (message.contains("_HEDE")) {
             String requestingProfileId = message.substring(0,message.indexOf("_"));
             requestArray[requestCount++]=requestingProfileId;
-            Log.i("info","Requesting Profile Id : "+requestingProfileId);
+            displayMessage("Requesting Profile Id : "+requestingProfileId);
             // ID_REQ_CPU((R))
             String selectedProfileId = performSelection();
             if (selectedProfileId.equals(mydeviceId) && isServer) {
@@ -428,7 +375,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
         else if (message.contains(mydeviceId+"_HEGHE[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
-            Log.i("RESULT : ",input);
+            displayMessage("RESULT : "+input);
         }
     }
 
@@ -450,26 +397,29 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
             else if (message.contains(mydeviceId+"_HEGHE[[")) {
                 String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
-                Log.i("RESULT : ",input);
+                displayMessage("RESULT : "+input);
             }
         }
     }
 
     private String performSelection() {
         int random = getRandom(0,profileSet.size()-1), i = 0;
-        Log.i("info","Random : "+random);
+//        displayMessage("Random : "+random);
         DeviceProfile profile = null;
         Iterator<DeviceProfile> it = profileSet.iterator();
         while (it.hasNext()) {
             profile = it.next();
+            if (profile.devId != mydeviceId)
+            {
+                return profile.devId;
+            }
             if (i == random) {
-                Log.i("info",i+"inside Profile Id : "+profile.devId);
-                break;
+//                displayMessage(i+"inside Profile Id : "+profile.devId);
+//                break;
             }
             i++;
-            Log.i("info","dsdg "+i);
         }
-        Log.i("info","Profile Id : "+profile.devId);
+//        displayMessage("Profile Id : "+profile.devId);
         return profile.devId;
     }
 
@@ -481,7 +431,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         public void run() {
                             try {
                                 int port = 8986;
-                                Log.d("info","Started Server Thread");
+                                displayMessage("Started Server Thread");
                                 if (serverSocket == null)
                                     serverSocket = new ServerSocket(port);
 //									ServerSocket serverSocket = new ServerSocket();
@@ -495,7 +445,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 try {
                                     while(true ) {
                                         String messageReceived = in.readLine();
-                                        Log.d("info","Message Received from Client : "+messageReceived);
+                                        displayMessage("Message Received from Client : "+messageReceived);
                                         if (messageReceived.contains("_disconnect")) {
                                             removeProfile(messageReceived);
                                         }
@@ -503,13 +453,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                             messageReceivedByServer(messageReceived);
                                         }
 //                                            if (messageReceived == null) {
-//                                                Log.e("info","Message NULL on client #");
+//                                                displayMessage("Message NULL on client #");
 //                                                break;
 //                                            }
                                     }
                                 }
                                 catch (Exception e) {
-                                    Log.i("info","Exception in Server : "+e+" on client #");
+                                    Log.e(TAG,"Exception in Server : "+e+" on client #");
                                 }
                                 finally {
 //                                        in.close();
@@ -517,7 +467,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                                        client.close();
                                 }
                             } catch (Exception e){
-                                Log.e("info","Error : " + e);
+                                Log.e(TAG,"Error : " + e);
                                 e.printStackTrace();
                             }
                         }
@@ -543,13 +493,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 try {
                                     while (true) {
                                         String messageReceived = in.readLine();
-                                        Log.d("info","Message Received from Server : "+messageReceived);
+                                        displayMessage("Message Received from Server : "+messageReceived);
                                         if (messageReceived.equals("server_disconnect")) {
-                                            Log.e("info","Message NULL from server");
+                                            displayMessage("Message NULL from server");
                                             break;
                                         }
                                         if (messageReceived == null) {
-                                            Log.e("info","Message NULL from server");
+                                            displayMessage("Message NULL from server");
                                             break;
                                         }
                                         else {
@@ -558,7 +508,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                     }
                                 }
                                 catch (Exception e) {
-                                    Log.i("info","Exception in Client : "+e);
+                                    Log.e(TAG,"Exception in Client : "+e);
                                 }
                                 finally {
 //                                        in.close();
@@ -567,7 +517,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 }
                             }
                             catch (IOException e) {
-                                Log.e("info","Error : " + e);
+                                Log.e(TAG,"Error : " + e);
                                 e.printStackTrace();
                             }
                         }
@@ -829,7 +779,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     }
 
     public void onStartOCRClick(){
-        Log.v(TAG, "Process OCR Begin");
+        displayMessage("Process OCR Begin");
         timerLogger = new TimingLogger(TAG, "Started OCR");
         doOCR(getBitmapFromAsset(getActivity().getApplicationContext(),"img1.jpg"));
     }
@@ -840,10 +790,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             File dir = new File(path);
             if (!dir.exists()) {
                 if (!dir.mkdirs()) {
-                    Log.v("Main", "ERROR: Creation of directory " + path + " on sdcard failed");
+                    displayMessage("ERROR: Creation of directory " + path + " on sdcard failed");
                     break;
                 } else {
-                    Log.v("Main", "Created directory " + path + " on sdcard");
+                    displayMessage("Created directory " + path + " on sdcard");
                 }
             }
 
@@ -878,35 +828,48 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     }
 
     public void doOCR(final Bitmap bitmap) {
-        if (mProgressDialog == null) {
-            mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
-                    "Please wait...", true);
-            // mResult.setVisibility(V.ViewISIBLE);
-        }
-        else {
-            mProgressDialog.show();
-        }
-        new Thread(new Runnable() {
-            public void run() {
-                timerLogger.addSplit("Started OCR");
-                final String result = mTessOCR.getOCRResult(bitmap).toLowerCase();
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
+        try {
+            if (mProgressDialog == null) {
+//                mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
+//                        "Please wait...", true);
+                // mResult.setVisibility(V.ViewISIBLE);
+            } else {
+//                mProgressDialog.show();
+            }
+            try {
+                new Thread(new Runnable() {
                     public void run() {
-                        // TODO Auto-generated method stub
-                        if (result != null && !result.equals("")) {
-                            String s = result.trim();
+                        timerLogger.addSplit("Started OCR");
+                        final String result = mTessOCR.getOCRResult(bitmap).toLowerCase();
+                        getActivity().runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                // TODO Auto-generated method stub
+                                if (result != null && !result.equals("")) {
+                                    String formattedResult = result.trim();
+                                    formattedResult = formattedResult.replace("\n", "").replace("\r", "");
 //                            textView.setText(result);
-                            Log.v(TAG,"Result : "+result);
-                            String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
-                            operationComplete(message);
-                        }
-                        mProgressDialog.dismiss();
-                        timerLogger.addSplit("Completed OCR");
+                                    displayMessage("Result : " + formattedResult);
+                                    completedCPUOperation(formattedResult);
+                                }
+                                else {
+                                    displayMessage("Invalid Result of OCR : "+result);
+                                }
+//                                mProgressDialog.dismiss();
+                                timerLogger.addSplit("Completed OCR");
+                            }
+                        });
                     }
-                });
-            };
-        }).start();
+
+                    ;
+                }).start();
+            } catch (Exception e) {
+                Log.e(TAG, "Exception in OCR : " + e);
+            }
+        }
+        catch (Exception e) {
+            Log.e(TAG,"Exception in PROGRESS BAR : "+e);
+        }
     }
 
 
@@ -931,4 +894,88 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         return bitmap;
     }
 
+    void displayMessage(final String message) {
+        Log.d(TAG,message);
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
+                t.show();
+            }
+        });
+    }
+
+    String memOperation(String fileName,String inputLine){
+        Context c = this.getActivity().getApplicationContext();
+        WordUtils obj = new WordUtils();
+        TreeMap map =  obj.runMem(inputLine, c,fileName);
+        Set<Map.Entry<String,Integer>> entrySet = map.entrySet();
+        String output = " ";
+        for(Map.Entry<String,Integer> entry : entrySet){
+            String values = entry.getValue() + "\t" + entry.getKey()+"\t ";
+            System.out.println(values);
+            output = output + values;
+        }
+        System.out.println("Total Words scanned till now : "+obj.totalCount);
+        output = output + "Total Words scanned till now : "+obj.totalCount;
+        output = output.replace("\n","\t");
+        displayMessage("MEM Result : "+output);
+        completedMEMOperation(output);
+        return output;
+    }
+
+    private void performCPUOperation() {
+        // ID_RES_CPU[[]]((R))
+        onStartOCRClick();
+    }
+
+    private void performMEMOperation(String input) {
+        // ID_RES_MEM[[]]((R))
+        memOperation("ebook1.txt",input);
+    }
+
+    void startOperation() {
+        if (runOnYourOwnMode) {
+            performCPUOperation();
+        }
+        else {
+            operationHandler("_HEDE");
+        }
+    }
+
+    void completedCPUOperation(String result){
+        if (runOnYourOwnMode){
+            performMEMOperation(result);
+        }
+        else {
+            String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
+            operationHandler(message);
+        }
+    }
+
+    void completedMEMOperation(String result){
+        if (runOnYourOwnMode){
+            displayMessage("Final Result : "+result);
+        }
+        else {
+            String message = "_RES_MEM[[" + result + "]]((R" + requestNumber + "))";
+            operationHandler(message);
+        }
+    }
+
+    private void operationHandler(final String message) {
+        if (isServer) {
+            messageReceivedByServer(mydeviceId+message);
+        }
+        else {
+            sendMessageToServer(message);
+        }
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 1000ms
+            }
+        }, 5000);
+    }
 }

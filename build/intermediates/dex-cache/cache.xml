@@ -16,7 +16,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.0"
-        sha1="dab15a046a1e64805a9a649c3f90589a8c983dd3">
+        sha1="94df9e29b3748c1efd0997911802b00aace1f3d7">
         <dex dex="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_398c83e8a4ae3cbd1ac42307bda93759d0bb503c/classes.dex" />
     </item>
 
