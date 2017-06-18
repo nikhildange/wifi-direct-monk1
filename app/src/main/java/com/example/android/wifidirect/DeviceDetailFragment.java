@@ -115,17 +115,19 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
-    boolean runOnYourOwnMode = true;
+    boolean runOnYourOwnMode = false;
 
     private TessOCR mTessOCR;
     private static final String TAG = "info";
     public static final String lang = "eng";
     public static final String DATA_PATH = Environment.getExternalStorageDirectory().toString() + "/AppOCR/";
 
-    TimingLogger timerLogger;
     //    TextView textView;
     private ProgressDialog mProgressDialog;
     private Bitmap imageArray[] = new Bitmap[5];
+
+    private long startnow;
+    private long endnow;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -376,6 +378,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
         else if (message.contains(mydeviceId+"_HEGHE[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+            endnow = android.os.SystemClock.uptimeMillis();
+            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
             displayMessage("RESULT : "+input);
         }
     }
@@ -398,6 +402,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
             else if (message.contains(mydeviceId+"_HEGHE[[")) {
                 String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
+                endnow = android.os.SystemClock.uptimeMillis();
+                displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
                 displayMessage("RESULT : "+input);
             }
         }
@@ -405,18 +411,18 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private String performSelection() {
         int random = getRandom(0,profileSet.size()-1), i = 0;
-//        displayMessage("Random : "+random);
+        displayMessage("Random Number: "+random);
         DeviceProfile profile = null;
         Iterator<DeviceProfile> it = profileSet.iterator();
         while (it.hasNext()) {
             profile = it.next();
-            if (profile.devId != mydeviceId)
-            {
-                return profile.devId;
-            }
+//            if (profile.devId != mydeviceId)
+//            {
+//                return profile.devId;
+//            }
             if (i == random) {
-//                displayMessage(i+"inside Profile Id : "+profile.devId);
-//                break;
+                displayMessage(i+" inside Profile Id : "+profile.devId);
+                break;
             }
             i++;
         }
@@ -786,7 +792,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img3.png");
         imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img4.png");
         imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img5.png");
-//        timerLogger = new TimingLogger(TAG, "Started OCR");
         doOCR();
     }
 
@@ -837,15 +842,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             try {
                 new Thread(new Runnable() {
                     public void run() {
-//                        timerLogger.addSplit("Started OCR");
                         getActivity().runOnUiThread(new Runnable() {
                             public void run() {
-                        if (mProgressDialog == null) {
-                                mProgressDialog = ProgressDialog.show(getActivity(), "Processing",
+                                mProgressDialog = ProgressDialog.show(getActivity(), "Processing OCR",
                                         "Please wait...", true);
-                            } else {
-                                mProgressDialog.show();
-                            }}});
+                            }});
 
                         String recognisedString = "";
                         for (Bitmap bitmap : imageArray) {
@@ -860,14 +861,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                     String formattedResult = result.trim();
                                     formattedResult = formattedResult.replace("\n", "").replace("\r", "");
 //                            textView.setText(result);
-                                    displayMessage("Result : " + formattedResult);
+                                    displayMessage("OCR Result : " + formattedResult);
+                                    mProgressDialog.dismiss();
                                     completedCPUOperation(formattedResult);
                                 }
                                 else {
                                     displayMessage("Invalid Result of OCR : "+result);
+                                    mProgressDialog.dismiss();
                                 }
-                                mProgressDialog.dismiss();
-//                                timerLogger.addSplit("Completed OCR");
                             }
                         });
                     }
@@ -897,7 +898,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
             }
         }
-//        timerLogger.addSplit("Got Bitmap Image");
+
         return bitmap;
     }
 
@@ -917,8 +918,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
         new Thread(new Runnable() {
             public void run() {
+                getActivity().runOnUiThread(new Runnable() {
+                    public void run() {
+                            mProgressDialog = ProgressDialog.show(getActivity(), "Processing Scan",
+                                    "Please wait...", true);
+                        }});
+
                 WordUtils obj = new WordUtils();
-                String fileArray[] = {"ebook1.txt","ebook2.txt","ebook3.txt","ebook4.txt"};
+                String fileArray[] = {"ebook1.txt"};//,"ebook2.txt","ebook3.txt","ebook4.txt"};
                 TreeMap map;
                 map = obj.runMem(inputLine, c, fileArray);
                 final Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
@@ -937,6 +944,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     public void run() {
                         displayMessage("MEM Result : "+finalOutput);
                         completedMEMOperation(finalOutput);
+                        mProgressDialog.dismiss();
                     }});
             }}).start();
     }
@@ -958,6 +966,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         else {
             operationHandler("_HEDE");
         }
+        startnow = android.os.SystemClock.uptimeMillis();
     }
 
     void completedCPUOperation(String result){
@@ -972,6 +981,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     void completedMEMOperation(String result){
         if (runOnYourOwnMode){
+            endnow = android.os.SystemClock.uptimeMillis();
+            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
             displayMessage("Final Result : "+result);
         }
         else {
