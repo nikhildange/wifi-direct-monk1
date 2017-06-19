@@ -129,6 +129,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     private long startnow;
     private long endnow;
 
+    private String selectionArray[] = new String[2];
+    private String availableDeviceArray[];
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -185,7 +188,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                            startOperation();
+                        runAlgorithm();
+//                            startOperation();
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
                     }
@@ -339,7 +343,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             String responseRequestNumber = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
             System.out.print("input:"+input+" responseRequestNumber:"+responseRequestNumber);
             // ID_REQ_MEM[[]]((R))
-            String selectedProfileId = performSelection();
+            String selectedProfileId = selectionArray[1];
             if (selectedProfileId.equals(mydeviceId) && isServer) {
                 requestNumber = Integer.parseInt(responseRequestNumber);
                 performMEMOperation(input);
@@ -363,11 +367,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
         }
         else if (message.contains("_HEDE")) {
+            runAlgorithm();
             String requestingProfileId = message.substring(0,message.indexOf("_"));
             requestArray[requestCount++]=requestingProfileId;
             displayMessage("Requesting Profile Id : "+requestingProfileId);
             // ID_REQ_CPU((R))
-            String selectedProfileId = performSelection();
+            String selectedProfileId = selectionArray[0];;
             if (selectedProfileId.equals(mydeviceId) && isServer) {
                 requestNumber = requestCount-1;
                 performCPUOperation();
@@ -674,10 +679,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
         while (it.hasNext()){
             deviceProfile = it.next();
-            inputMat[devNo][0] = deviceProfile.getBatVal();
-            inputMat[devNo][1] = deviceProfile.getCpuVal();
-            inputMat[devNo][2] = deviceProfile.getMemVal();
-            devNo++;
+//            if (deviceProfile.getAvailiability()) {
+                inputMat[devNo][0] = deviceProfile.getCamVal();
+                inputMat[devNo][1] = deviceProfile.getCpuVal();
+                inputMat[devNo][2] = deviceProfile.getMemVal();
+                devNo++;
+//            }
         }
 
         printMat(inputMat, profileSet.size(), numberOfCapablity);
@@ -742,12 +749,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         AlgoMethod algorithm = new AlgoMethod(inputMat,numberOfCapablity > profileSet.size() ? numberOfCapablity : profileSet.size());
         System.out.println(String.format("\nTotal time taken to execute : %dms\n", System.currentTimeMillis() - time));
 
-        String capArr[] = {"MEM","BAT","CPU"};
+        String capArr[] = {"MEM","CAM","CPU"};
 
         int[] r = algorithm.result();
         System.out.println("Output : ");
-        for (int k =0 ; k < r.length;k++)
-        {
+        for (int k =0 ; k < r.length;k++) {
             System.out.print("\n\n VALUE OF R : "+r[k]+" at "+k+"\n\n");
         }
 
@@ -757,7 +763,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         String str = "";
         while (it.hasNext()) {
             d = it.next();
-            str =  " "+d.getBatVal() + " ";
+            str =  " "+d.getCamVal() + " ";
             str = str + d.getCpuVal() + " ";
             str = str + d.getMemVal();
             System.out.print("\n\n VALUE OF DEVICE "+d.devId+" : "+str+"\n\n");

@@ -4,14 +4,18 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Camera;
+import android.hardware.camera2.CameraManager;
 import android.os.BatteryManager;
 import android.provider.Settings;
+import android.util.Size;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.math.BigInteger;
 import java.security.MessageDigest;
+import java.util.List;
 
 /**
  * Created by nikhildange on 30/03/16.
@@ -107,4 +111,17 @@ public class ProfileReader {
         }
         return device_uuid;
     }
+
+//    public int getCamera(Context context) {
+//        CameraDevice camera = CameraDevice.
+//        List<Size> sizes = android.hardware.camera2. .getSupportedPictureSizes();
+//        Size mSize = null;
+//        for (Size size : sizes) {
+//            System.out.println("Size =="+size.width+"==Height=="+size.height);
+//            break;
+//        }
+//        CameraManager manager = (CameraManager) context.getApplicationContext().getSystemService(Context.CAMERA_SERVICE);
+//        manager.
+//    }
+
 }

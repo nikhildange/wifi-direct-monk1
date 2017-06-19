@@ -6,7 +6,6 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="info" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -16,7 +15,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
@@ -29,15 +27,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$7.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/WiFiDirectActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceProfile.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/ProfileReader.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/ProfileReader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
@@ -48,15 +44,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$7.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/WiFiDirectActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceProfile.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/ProfileReader.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/ProfileReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_56ff2db3b0140852b8f9caf5e8e43ad67f03962e.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_56ff2db3b0140852b8f9caf5e8e43ad67f03962e.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/split-apk/debug/slices/slice_4.apk" afterPath="$PROJECT_DIR$/app/build/intermediates/split-apk/debug/slices/slice_4.apk" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
@@ -69,15 +64,13 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$7.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/WiFiDirectActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceProfile.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/ProfileReader.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/ProfileReader.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
@@ -88,22 +81,24 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$7.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$7.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/WiFiDirectActivity.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceProfile.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/ProfileReader.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/ProfileReader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/package_slice_4/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/instant-run-support/debug/package_slice_4/dex-renamer-state.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" afterPath="$PROJECT_DIR$/app/build/intermediates/restart-dex/debug/build-info.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/buildId.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/buildId.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java" />
     </list>
     <ignored path="wifi-direct-demo-monk.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -145,124 +140,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-536">
-              <caret line="848" column="31" selection-start-line="848" selection-start-column="31" selection-end-line="848" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#39596#0" expanded="true" />
-                <element signature="e#33326#35162#0" expanded="true" />
-                <element signature="e#33435#33698#0" expanded="true" />
-                <element signature="e#33697#33698#0" expanded="true" />
-                <element signature="e#35161#35162#0" expanded="true" />
-                <element signature="e#36476#36720#0" expanded="true" />
-                <element signature="e#36719#36720#0" expanded="true" />
-              </folding>
-            </state>
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <provider editor-type-id="android-manifest">
+            <state />
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WordUtils.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="WiFiDirectActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="81" column="39" selection-start-line="81" selection-start-column="39" selection-end-line="81" selection-end-column="39" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Handler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/os/Handler.java">
+      <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state relative-caret-position="120">
+              <caret line="170" column="51" selection-start-line="170" selection-start-column="51" selection-end-line="170" selection-end-column="51" />
               <folding>
-                <element signature="e#0#31377#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#4519#4520#0" expanded="false" />
-                <element signature="e#4552#4553#0" expanded="false" />
-                <element signature="e#5003#5004#0" expanded="false" />
-                <element signature="e#5040#5041#0" expanded="false" />
-                <element signature="e#5218#5219#0" expanded="false" />
-                <element signature="e#5259#5260#0" expanded="false" />
-                <element signature="e#5605#5606#0" expanded="false" />
-                <element signature="e#5650#5651#0" expanded="false" />
-                <element signature="e#6442#6443#0" expanded="false" />
-                <element signature="e#6475#6476#0" expanded="false" />
-                <element signature="e#10258#10259#0" expanded="false" />
-                <element signature="e#10301#10302#0" expanded="false" />
-                <element signature="e#10614#10615#0" expanded="false" />
-                <element signature="e#10663#10664#0" expanded="false" />
-                <element signature="e#12859#12860#0" expanded="false" />
-                <element signature="e#12922#12923#0" expanded="false" />
-                <element signature="e#20193#20194#0" expanded="false" />
-                <element signature="e#20245#20246#0" expanded="false" />
-                <element signature="e#21088#21089#0" expanded="false" />
-                <element signature="e#21137#21138#0" expanded="false" />
-                <element signature="e#21494#21495#0" expanded="false" />
-                <element signature="e#21549#21550#0" expanded="false" />
-                <element signature="e#26650#26651#0" expanded="false" />
-                <element signature="e#26705#26706#0" expanded="false" />
-                <element signature="e#27541#27542#0" expanded="false" />
-                <element signature="e#27600#27601#0" expanded="false" />
-                <element signature="e#28061#28062#0" expanded="false" />
-                <element signature="e#28117#28118#0" expanded="false" />
-                <element signature="e#28298#28299#0" expanded="false" />
-                <element signature="e#28328#28329#0" expanded="false" />
-                <element signature="e#29660#29661#0" expanded="false" />
-                <element signature="e#29698#29699#0" expanded="false" />
-                <element signature="e#30036#30037#0" expanded="false" />
-                <element signature="e#30072#30073#0" expanded="false" />
+                <element signature="e#0#39840#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LayoutInflater.java" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/view/LayoutInflater.java">
+      <file leaf-file-name="AlgoMethod.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5685">
-              <caret line="422" column="0" selection-start-line="422" selection-start-column="0" selection-end-line="422" selection-end-column="0" />
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileReader.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1076">
+              <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
               <folding>
-                <element signature="e#0#41442#0" expanded="false" />
-                <element signature="imports" expanded="false" />
-                <element signature="e#7516#7517#0" expanded="false" />
-                <element signature="e#7550#7551#0" expanded="false" />
-                <element signature="e#9342#9343#0" expanded="false" />
-                <element signature="e#9373#9374#0" expanded="false" />
-                <element signature="e#9648#9649#0" expanded="false" />
-                <element signature="e#9679#9680#0" expanded="false" />
-                <element signature="e#10066#10067#0" expanded="false" />
-                <element signature="e#10098#10099#0" expanded="false" />
-                <element signature="e#12555#12556#0" expanded="false" />
-                <element signature="e#12585#12586#0" expanded="false" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TessOCR.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/TessOCR.java">
+      <file leaf-file-name="DeviceProfile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state relative-caret-position="690">
+              <caret line="55" column="17" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1934,14 +1864,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java" />
         <option value="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/TessOCR.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java" />
       </list>
     </option>
@@ -1976,16 +1907,21 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="wifi-direct-demo-monk1" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2016,17 +1952,30 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="wifi-direct-demo-monk1" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="instant.run" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="ZY2238KTRH" />
+    <property name="device.picker.selection" value="26da58ca" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -2353,6 +2302,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="6e3dc6cb-06af-4fed-bfc1-c8951357004a" name="Default" comment="" />
@@ -2382,7 +2334,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63774735" sideWeight="0.19660194" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.75342464" sideWeight="0.41747573" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63318115" sideWeight="0.41747573" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.00608828" sideWeight="0.49676377" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.49676377" order="10" side_tool="false" content_ui="tabs" />
@@ -2422,40 +2374,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39596#0" expanded="true" />
-            <element signature="e#33326#35162#0" expanded="true" />
-            <element signature="e#33435#33698#0" expanded="true" />
-            <element signature="e#33697#33698#0" expanded="true" />
-            <element signature="e#35161#35162#0" expanded="true" />
-            <element signature="e#36476#36720#0" expanded="true" />
-            <element signature="e#36719#36720#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1425">
-          <caret line="129" column="52" selection-start-line="129" selection-start-column="52" selection-end-line="129" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WordUtils.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/FileTransferService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -2483,13 +2401,7 @@
         <state relative-caret-position="8220">
           <caret line="548" column="22" selection-start-line="548" selection-start-column="22" selection-end-line="548" selection-end-column="22" />
           <folding>
-            <element signature="e#0#39596#0" expanded="true" />
-            <element signature="e#33326#35162#0" expanded="true" />
-            <element signature="e#33435#33698#0" expanded="true" />
-            <element signature="e#33697#33698#0" expanded="true" />
-            <element signature="e#35161#35162#0" expanded="true" />
-            <element signature="e#36476#36720#0" expanded="true" />
-            <element signature="e#36719#36720#0" expanded="true" />
+            <element signature="e#0#39840#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2531,13 +2443,7 @@
         <state relative-caret-position="8220">
           <caret line="548" column="22" selection-start-line="548" selection-start-column="22" selection-end-line="548" selection-end-column="22" />
           <folding>
-            <element signature="e#0#39596#0" expanded="true" />
-            <element signature="e#33326#35162#0" expanded="true" />
-            <element signature="e#33435#33698#0" expanded="true" />
-            <element signature="e#33697#33698#0" expanded="true" />
-            <element signature="e#35161#35162#0" expanded="true" />
-            <element signature="e#36476#36720#0" expanded="true" />
-            <element signature="e#36719#36720#0" expanded="true" />
+            <element signature="e#0#39840#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2586,13 +2492,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#39596#0" expanded="true" />
-            <element signature="e#33326#35162#0" expanded="true" />
-            <element signature="e#33435#33698#0" expanded="true" />
-            <element signature="e#33697#33698#0" expanded="true" />
-            <element signature="e#35161#35162#0" expanded="true" />
-            <element signature="e#36476#36720#0" expanded="true" />
-            <element signature="e#36719#36720#0" expanded="true" />
+            <element signature="e#0#39840#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2643,9 +2543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="19" selection-start-line="29" selection-start-column="19" selection-end-line="29" selection-end-column="19" />
-          <folding>
-            <element signature="e#992#1010#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2722,27 +2620,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="18" column="40" selection-start-line="18" selection-start-column="40" selection-end-line="18" selection-end-column="40" />
-          <folding>
-            <element signature="e#992#1010#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/WiFiDirectBroadcastReceiver.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -2785,6 +2662,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2824,30 +2702,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2936,18 +2790,78 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/hardware/camera2/CameraManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="784" column="55" selection-start-line="784" selection-start-column="51" selection-end-line="784" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/hardware/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="140" column="13" selection-start-line="140" selection-start-column="13" selection-end-line="140" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-22/android/graphics/Camera.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="1" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="55" column="17" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/AlgoMethod.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1076">
+          <caret line="21" column="3" selection-start-line="21" selection-start-column="3" selection-end-line="21" selection-end-column="3" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-536">
-          <caret line="848" column="31" selection-start-line="848" selection-start-column="31" selection-end-line="848" selection-end-column="31" />
+        <state relative-caret-position="120">
+          <caret line="170" column="51" selection-start-line="170" selection-start-column="51" selection-end-line="170" selection-end-column="51" />
           <folding>
-            <element signature="e#0#39596#0" expanded="true" />
-            <element signature="e#33326#35162#0" expanded="true" />
-            <element signature="e#33435#33698#0" expanded="true" />
-            <element signature="e#33697#33698#0" expanded="true" />
-            <element signature="e#35161#35162#0" expanded="true" />
-            <element signature="e#36476#36720#0" expanded="true" />
-            <element signature="e#36719#36720#0" expanded="true" />
+            <element signature="e#0#39840#0" expanded="true" />
           </folding>
         </state>
       </provider>
