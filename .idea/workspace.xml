@@ -11,30 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6e3dc6cb-06af-4fed-bfc1-c8951357004a" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5038a228864978596faa44609fa14359605a57e/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_398c83e8a4ae3cbd1ac42307bda93759d0bb503c/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_b438f613f72c6003bad06dadfec5c70deecbc2f9/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_0/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_1/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_2/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_3/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_4/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_5/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_6/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_8/classes.dex" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_9/classes.dex" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/dex/debug/folders/1000/1f/main/classes.dex" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/3.3/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
@@ -43,13 +26,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/classes/debug/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
@@ -58,17 +35,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental-verifier/debug/com/example/android/wifidirect/DeviceDetailFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/HOuZWyHCj7wLQF1vHvOMgzYeKGE=" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/zip-cache/HOuZWyHCj7wLQF1vHvOMgzYeKGE=" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_56ff2db3b0140852b8f9caf5e8e43ad67f03962e.jar" afterPath="$PROJECT_DIR$/app/build/intermediates/pre-dexed/debug/debug_56ff2db3b0140852b8f9caf5e8e43ad67f03962e.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" afterPath="$PROJECT_DIR$/app/build/intermediates/res/resources-debug.ap_" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/split-apk/debug/slices/slice_4.apk" afterPath="$PROJECT_DIR$/app/build/intermediates/split-apk/debug/slices/slice_4.apk" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
@@ -77,13 +48,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRun/debug/folders/1/5/main/com/example/android/wifidirect/DeviceDetailFragment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$3.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$4.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$5.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$5.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$6.class" />
@@ -92,9 +57,9 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$8.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$9.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment$ServerAsyncTask.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment.class" afterPath="$PROJECT_DIR$/app/build/intermediates/transforms/instantRunSlicer/debug/folders/1/5/slice_4/com/example/android/wifidirect/DeviceDetailFragment.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" afterPath="$PROJECT_DIR$/app/build/outputs/apk/app-debug.apk" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/dex-renamer-state.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" afterPath="$PROJECT_DIR$/app/build/intermediates/incremental/packageDebug/file-input-save-data.txt" />
@@ -159,8 +124,8 @@
       <file leaf-file-name="DeviceDetailFragment.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="849" column="61" selection-start-line="849" selection-start-column="61" selection-end-line="849" selection-end-column="61" />
+            <state relative-caret-position="173">
+              <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
               <folding>
                 <element signature="e#3703#3718#0" expanded="true" />
                 <element signature="e#5092#6287#0" expanded="true" />
@@ -180,22 +145,22 @@
                 <element signature="e#23341#23355#0" expanded="true" />
                 <element signature="e#23450#23464#0" expanded="true" />
                 <element signature="e#23559#23573#0" expanded="true" />
-                <element signature="e#40839#42675#0" expanded="true" />
-                <element signature="e#40948#41211#0" expanded="true" />
-                <element signature="e#41210#41211#0" expanded="true" />
-                <element signature="e#41587#42610#0" expanded="true" />
-                <element signature="e#42609#42610#0" expanded="true" />
-                <element signature="e#42674#42675#0" expanded="true" />
-                <element signature="e#43520#43749#0" expanded="true" />
-                <element signature="e#43748#43749#0" expanded="true" />
-                <element signature="e#43896#45472#0" expanded="true" />
-                <element signature="e#43989#44233#0" expanded="true" />
-                <element signature="e#44232#44233#0" expanded="true" />
-                <element signature="e#45166#45455#0" expanded="true" />
-                <element signature="e#45454#45455#0" expanded="true" />
-                <element signature="e#45471#45472#0" expanded="true" />
-                <element signature="e#46948#47092#0" expanded="true" />
-                <element signature="e#47091#47092#0" expanded="true" />
+                <element signature="e#40597#42433#0" expanded="true" />
+                <element signature="e#40706#40969#0" expanded="true" />
+                <element signature="e#40968#40969#0" expanded="true" />
+                <element signature="e#41345#42368#0" expanded="true" />
+                <element signature="e#42367#42368#0" expanded="true" />
+                <element signature="e#42432#42433#0" expanded="true" />
+                <element signature="e#43278#43507#0" expanded="true" />
+                <element signature="e#43506#43507#0" expanded="true" />
+                <element signature="e#43654#45230#0" expanded="true" />
+                <element signature="e#43747#43991#0" expanded="true" />
+                <element signature="e#43990#43991#0" expanded="true" />
+                <element signature="e#44924#45213#0" expanded="true" />
+                <element signature="e#45212#45213#0" expanded="true" />
+                <element signature="e#45229#45230#0" expanded="true" />
+                <element signature="e#46706#46850#0" expanded="true" />
+                <element signature="e#46849#46850#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -206,7 +171,12 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="30">
               <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-              <folding />
+              <folding>
+                <element signature="e#2675#2676#0" expanded="false" />
+                <element signature="e#2696#2697#0" expanded="false" />
+                <element signature="e#2721#2722#0" expanded="false" />
+                <element signature="e#2739#2740#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -214,8 +184,8 @@
       <file leaf-file-name="ProfileReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+            <state relative-caret-position="255">
+              <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -226,9 +196,13 @@
       <file leaf-file-name="DeviceProfile.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
+            <state relative-caret-position="525">
               <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#1182#1183#0" expanded="false" />
+                <marker date="1497941357000" expanded="false" signature="48:119" ph="..." />
+                <marker date="1497941357000" expanded="true" signature="121:167" ph="/**...*/" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -1944,7 +1918,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -1962,10 +1935,15 @@
               <option name="myItemId" value="wifi-direct-demo-monk1" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
@@ -1975,7 +1953,7 @@
     <property name="android.sdk.path" value="$USER_HOME$/Library/Android/sdk" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="device.picker.selection" value="521f94ee" />
+    <property name="device.picker.selection" value="ZY223H4HKJ" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/java/com/example/android/wifidirect/WiFiDirectActivity.java" />
     <property name="android.project.structure.last.selected" value="SDK Location" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -2334,7 +2312,7 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.63774735" sideWeight="0.19660194" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3713851" sideWeight="0.41747573" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Monitor" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.41095892" sideWeight="0.41747573" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.00608828" sideWeight="0.49676377" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32876712" sideWeight="0.49676377" order="10" side_tool="false" content_ui="tabs" />
@@ -2392,7 +2370,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#1182#1183#0" expanded="false" />
+            <marker date="1497941357000" expanded="false" signature="48:119" ph="..." />
+            <marker date="1497941357000" expanded="true" signature="121:167" ph="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2419,22 +2401,22 @@
             <element signature="e#23341#23355#0" expanded="true" />
             <element signature="e#23450#23464#0" expanded="true" />
             <element signature="e#23559#23573#0" expanded="true" />
-            <element signature="e#40839#42675#0" expanded="true" />
-            <element signature="e#40948#41211#0" expanded="true" />
-            <element signature="e#41210#41211#0" expanded="true" />
-            <element signature="e#41587#42610#0" expanded="true" />
-            <element signature="e#42609#42610#0" expanded="true" />
-            <element signature="e#42674#42675#0" expanded="true" />
-            <element signature="e#43520#43749#0" expanded="true" />
-            <element signature="e#43748#43749#0" expanded="true" />
-            <element signature="e#43896#45472#0" expanded="true" />
-            <element signature="e#43989#44233#0" expanded="true" />
-            <element signature="e#44232#44233#0" expanded="true" />
-            <element signature="e#45166#45455#0" expanded="true" />
-            <element signature="e#45454#45455#0" expanded="true" />
-            <element signature="e#45471#45472#0" expanded="true" />
-            <element signature="e#46948#47092#0" expanded="true" />
-            <element signature="e#47091#47092#0" expanded="true" />
+            <element signature="e#40597#42433#0" expanded="true" />
+            <element signature="e#40706#40969#0" expanded="true" />
+            <element signature="e#40968#40969#0" expanded="true" />
+            <element signature="e#41345#42368#0" expanded="true" />
+            <element signature="e#42367#42368#0" expanded="true" />
+            <element signature="e#42432#42433#0" expanded="true" />
+            <element signature="e#43278#43507#0" expanded="true" />
+            <element signature="e#43506#43507#0" expanded="true" />
+            <element signature="e#43654#45230#0" expanded="true" />
+            <element signature="e#43747#43991#0" expanded="true" />
+            <element signature="e#43990#43991#0" expanded="true" />
+            <element signature="e#44924#45213#0" expanded="true" />
+            <element signature="e#45212#45213#0" expanded="true" />
+            <element signature="e#45229#45230#0" expanded="true" />
+            <element signature="e#46706#46850#0" expanded="true" />
+            <element signature="e#46849#46850#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2467,7 +2449,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#1182#1183#0" expanded="false" />
+            <marker date="1497941357000" expanded="false" signature="48:119" ph="..." />
+            <marker date="1497941357000" expanded="true" signature="121:167" ph="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2494,22 +2480,22 @@
             <element signature="e#23341#23355#0" expanded="true" />
             <element signature="e#23450#23464#0" expanded="true" />
             <element signature="e#23559#23573#0" expanded="true" />
-            <element signature="e#40839#42675#0" expanded="true" />
-            <element signature="e#40948#41211#0" expanded="true" />
-            <element signature="e#41210#41211#0" expanded="true" />
-            <element signature="e#41587#42610#0" expanded="true" />
-            <element signature="e#42609#42610#0" expanded="true" />
-            <element signature="e#42674#42675#0" expanded="true" />
-            <element signature="e#43520#43749#0" expanded="true" />
-            <element signature="e#43748#43749#0" expanded="true" />
-            <element signature="e#43896#45472#0" expanded="true" />
-            <element signature="e#43989#44233#0" expanded="true" />
-            <element signature="e#44232#44233#0" expanded="true" />
-            <element signature="e#45166#45455#0" expanded="true" />
-            <element signature="e#45454#45455#0" expanded="true" />
-            <element signature="e#45471#45472#0" expanded="true" />
-            <element signature="e#46948#47092#0" expanded="true" />
-            <element signature="e#47091#47092#0" expanded="true" />
+            <element signature="e#40597#42433#0" expanded="true" />
+            <element signature="e#40706#40969#0" expanded="true" />
+            <element signature="e#40968#40969#0" expanded="true" />
+            <element signature="e#41345#42368#0" expanded="true" />
+            <element signature="e#42367#42368#0" expanded="true" />
+            <element signature="e#42432#42433#0" expanded="true" />
+            <element signature="e#43278#43507#0" expanded="true" />
+            <element signature="e#43506#43507#0" expanded="true" />
+            <element signature="e#43654#45230#0" expanded="true" />
+            <element signature="e#43747#43991#0" expanded="true" />
+            <element signature="e#43990#43991#0" expanded="true" />
+            <element signature="e#44924#45213#0" expanded="true" />
+            <element signature="e#45212#45213#0" expanded="true" />
+            <element signature="e#45229#45230#0" expanded="true" />
+            <element signature="e#46706#46850#0" expanded="true" />
+            <element signature="e#46849#46850#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2542,7 +2528,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
           <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#1182#1183#0" expanded="false" />
+            <marker date="1497941357000" expanded="false" signature="48:119" ph="..." />
+            <marker date="1497941357000" expanded="true" signature="121:167" ph="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2576,22 +2566,22 @@
             <element signature="e#23341#23355#0" expanded="true" />
             <element signature="e#23450#23464#0" expanded="true" />
             <element signature="e#23559#23573#0" expanded="true" />
-            <element signature="e#40839#42675#0" expanded="true" />
-            <element signature="e#40948#41211#0" expanded="true" />
-            <element signature="e#41210#41211#0" expanded="true" />
-            <element signature="e#41587#42610#0" expanded="true" />
-            <element signature="e#42609#42610#0" expanded="true" />
-            <element signature="e#42674#42675#0" expanded="true" />
-            <element signature="e#43520#43749#0" expanded="true" />
-            <element signature="e#43748#43749#0" expanded="true" />
-            <element signature="e#43896#45472#0" expanded="true" />
-            <element signature="e#43989#44233#0" expanded="true" />
-            <element signature="e#44232#44233#0" expanded="true" />
-            <element signature="e#45166#45455#0" expanded="true" />
-            <element signature="e#45454#45455#0" expanded="true" />
-            <element signature="e#45471#45472#0" expanded="true" />
-            <element signature="e#46948#47092#0" expanded="true" />
-            <element signature="e#47091#47092#0" expanded="true" />
+            <element signature="e#40597#42433#0" expanded="true" />
+            <element signature="e#40706#40969#0" expanded="true" />
+            <element signature="e#40968#40969#0" expanded="true" />
+            <element signature="e#41345#42368#0" expanded="true" />
+            <element signature="e#42367#42368#0" expanded="true" />
+            <element signature="e#42432#42433#0" expanded="true" />
+            <element signature="e#43278#43507#0" expanded="true" />
+            <element signature="e#43506#43507#0" expanded="true" />
+            <element signature="e#43654#45230#0" expanded="true" />
+            <element signature="e#43747#43991#0" expanded="true" />
+            <element signature="e#43990#43991#0" expanded="true" />
+            <element signature="e#44924#45213#0" expanded="true" />
+            <element signature="e#45212#45213#0" expanded="true" />
+            <element signature="e#45229#45230#0" expanded="true" />
+            <element signature="e#46706#46850#0" expanded="true" />
+            <element signature="e#46849#46850#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2876,9 +2866,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceProfile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
+        <state relative-caret-position="525">
           <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#1182#1183#0" expanded="false" />
+            <marker date="1497941357000" expanded="false" signature="48:119" ph="..." />
+            <marker date="1497941357000" expanded="true" signature="121:167" ph="/**...*/" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2886,14 +2880,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="e#2675#2676#0" expanded="false" />
+            <element signature="e#2696#2697#0" expanded="false" />
+            <element signature="e#2721#2722#0" expanded="false" />
+            <element signature="e#2739#2740#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/ProfileReader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="25" column="3" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+        <state relative-caret-position="255">
+          <caret line="29" column="3" selection-start-line="29" selection-start-column="3" selection-end-line="29" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2902,8 +2901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/android/wifidirect/DeviceDetailFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="849" column="61" selection-start-line="849" selection-start-column="61" selection-end-line="849" selection-end-column="61" />
+        <state relative-caret-position="173">
+          <caret line="810" column="34" selection-start-line="810" selection-start-column="34" selection-end-line="810" selection-end-column="34" />
           <folding>
             <element signature="e#3703#3718#0" expanded="true" />
             <element signature="e#5092#6287#0" expanded="true" />
@@ -2923,22 +2922,22 @@
             <element signature="e#23341#23355#0" expanded="true" />
             <element signature="e#23450#23464#0" expanded="true" />
             <element signature="e#23559#23573#0" expanded="true" />
-            <element signature="e#40839#42675#0" expanded="true" />
-            <element signature="e#40948#41211#0" expanded="true" />
-            <element signature="e#41210#41211#0" expanded="true" />
-            <element signature="e#41587#42610#0" expanded="true" />
-            <element signature="e#42609#42610#0" expanded="true" />
-            <element signature="e#42674#42675#0" expanded="true" />
-            <element signature="e#43520#43749#0" expanded="true" />
-            <element signature="e#43748#43749#0" expanded="true" />
-            <element signature="e#43896#45472#0" expanded="true" />
-            <element signature="e#43989#44233#0" expanded="true" />
-            <element signature="e#44232#44233#0" expanded="true" />
-            <element signature="e#45166#45455#0" expanded="true" />
-            <element signature="e#45454#45455#0" expanded="true" />
-            <element signature="e#45471#45472#0" expanded="true" />
-            <element signature="e#46948#47092#0" expanded="true" />
-            <element signature="e#47091#47092#0" expanded="true" />
+            <element signature="e#40597#42433#0" expanded="true" />
+            <element signature="e#40706#40969#0" expanded="true" />
+            <element signature="e#40968#40969#0" expanded="true" />
+            <element signature="e#41345#42368#0" expanded="true" />
+            <element signature="e#42367#42368#0" expanded="true" />
+            <element signature="e#42432#42433#0" expanded="true" />
+            <element signature="e#43278#43507#0" expanded="true" />
+            <element signature="e#43506#43507#0" expanded="true" />
+            <element signature="e#43654#45230#0" expanded="true" />
+            <element signature="e#43747#43991#0" expanded="true" />
+            <element signature="e#43990#43991#0" expanded="true" />
+            <element signature="e#44924#45213#0" expanded="true" />
+            <element signature="e#45212#45213#0" expanded="true" />
+            <element signature="e#45229#45230#0" expanded="true" />
+            <element signature="e#46706#46850#0" expanded="true" />
+            <element signature="e#46849#46850#0" expanded="true" />
           </folding>
         </state>
       </provider>

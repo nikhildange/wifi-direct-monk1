@@ -787,20 +787,25 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
 
             for (int j = 0; j< noDevice;j++) {
-                Log.d(TAG,"sum of ["+j+"] device : "+maxArray[j]);
-                System.out.print(maxArray[j] + " ");
+                Log.d(TAG,"sum of ["+j+"] device : "+capabilitySumArray[j]);
+                System.out.print(capabilitySumArray[j] + " ");
             }
 
             List<Integer> list = Arrays.asList(capabilitySumArray);
             int max = Collections.max(list);
 
+            String tempProfileArray[] = new String[3];
+
             int profileAddedToInputMatrix = 0;
             while (profileAddedToInputMatrix < 3) {
                 for (int r = 0; r < profileSet.size() && profileAddedToInputMatrix < 3; r++) {
                     if (max == capabilitySumArray[r]) {
+                        System.out.println("profileAddedToInputMatrix : "+profileAddedToInputMatrix);
                         for(int c=0; c<numberOfCapablity;c++){
                             inputMat[profileAddedToInputMatrix][c] = ranker_Output_Matirx[r][c];
                         }
+                        System.out.println("profileArray["+r+"] : "+profileArray[r]);
+                        tempProfileArray[profileAddedToInputMatrix] = profileArray[r];
                         profileAddedToInputMatrix++;
                         if (profileAddedToInputMatrix == 3) {
                             break;
@@ -808,6 +813,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     }
                 }
                 max = max - 1;
+                System.out.println("MAx : "+max);
+            }
+            profileArray = new String[3];
+            for (int i = 0; i<tempProfileArray.length ; i++) {
+                profileArray[i] = tempProfileArray[i];
             }
 
             printMat(inputMat,3,3);
@@ -818,11 +828,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
 
         if (runAlgorithm) {
-
+            runAlgoBasedOnSelection();
         }
     }
 
-    void runAlgoBasedOnSelection(int matrixSize) {
+    void runAlgoBasedOnSelection() {
         long time = System.currentTimeMillis();
         AlgoMethod algorithm = new AlgoMethod(inputMat,inputMat.length);
         System.out.println(String.format("\nTotal time taken to execute : %dms\n", System.currentTimeMillis() - time));
@@ -830,29 +840,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         String capArr[] = {"CPU","MEM","CAM"};
 
         int[] r = algorithm.result();
+        selectionArray = new String[r.length];
+
         System.out.println("Output : ");
         for (int k =0 ; k < r.length;k++) {
-            System.out.print("\n\n VALUE OF R : "+r[k]+" at "+k+"\n\n");
+            System.out.print("\n\n"+profileArray[k]+" Device :"+k+" perform :"+capArr[r[k]]+" Operation\n");
+            selectionArray[r[k]] = profileArray[k];
         }
-
-        Iterator<DeviceProfile> it = profileSet.iterator();
-        DeviceProfile d;
-        int i = 0;
-        String str = "";
-        while (it.hasNext()) {
-            d = it.next();
-            str =  " "+d.getCamVal() + " ";
-            str = str + d.getCpuVal() + " ";
-            str = str + d.getMemVal();
-            System.out.print("\n\n VALUE OF DEVICE "+d.devId+" : "+str+"\n\n");
-//                            display = d.devId + "device_id" +i + 1 + " Device " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability, Cost : " + profileInfoMat[i][r[i+1]];
-            System.out.print("\n\n VALUE OF R : "+r[i]+"\n\n");
-            System.out.println("device "+(i+1)+" with ID "+d.devId + " will work on " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability");// Cost : " + inputMat[i][r[i]]);
-//                            t = Toast.makeText(getActivity().getApplicationContext(), display, Toast.LENGTH_SHORT);
-//                            t.show();
-            i++;
-        }
-
         System.out.println("\nTotal Cost : " + algorithm.total());
     }
 
