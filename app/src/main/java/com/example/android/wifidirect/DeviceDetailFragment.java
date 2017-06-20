@@ -40,9 +40,11 @@ import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.nio.ByteOrder;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
@@ -68,6 +70,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.util.TimingLogger;
@@ -132,6 +135,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     private String selectionArray[] = new String[2];
     private String availableDeviceArray[];
 
+    private String profileArray[];
+    private int ranker_Output_Matirx[][];
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -188,7 +194,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                        runAlgorithm();
+                        generateRankerMatrix();
+//                        runAlgorithm();
 //                            startOperation();
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
@@ -668,6 +675,185 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             System.out.println();
         }
         System.out.println();
+    }
+
+    void generateRankerMatrix() {
+        Boolean runAlgorithm = false;
+        profileArray = new String[profileSet.size()];
+        ranker_Output_Matirx = new int[profileSet.size()][3];
+
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        DeviceProfile deviceProfile;
+        int devNo = 0;
+        while (it.hasNext()) {
+            deviceProfile = it.next();
+                profileArray[devNo] = deviceProfile.devId;
+                ranker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
+                ranker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
+                ranker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
+            displayMessage("\nDEV_ID: "+profileArray[devNo]+" CPU:"+ranker_Output_Matirx[devNo][0]+"  MEM:"+ranker_Output_Matirx[devNo][1]+"  CAM:"+ranker_Output_Matirx[devNo][2]);
+            devNo++;
+        }
+        displayMessage("ranker_Output_Matirx:\n");
+        printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
+
+        if (profileSet.size() == 2 || profileSet.size() == 3) {
+            int size = profileSet.size();
+            inputMat = new int[size][size];
+            for(int r=0; r<size;r++){
+                for(int c=0; c<size;c++){
+                    inputMat[r][c] = ranker_Output_Matirx[r][c];
+                }
+            }
+
+            if (size == 2){
+                displayMessage("ranker_Output_Matrix based inputMat:\n");
+                printMat(inputMat,size,size);
+            }
+
+            double per = 0;
+            int width = size;
+
+            int[] maxArray = new int[width];
+            for(int r=0; r<width;r++){
+                int max = 0;
+                for(int c=0; c<width;c++){
+                    if (inputMat[c][r] >= max) {
+                        max = inputMat[c][r];
+                    }
+                }
+                maxArray[r] = max;
+            }
+
+            //	for (int j =0; j< width;j++)
+            //      	System.out.print(maxArray[j]+" ");
+
+            for(int c=0; c<width;c++){
+                for(int r=0; r<width;r++){
+                    if (inputMat[r][c]!=0) {
+                        per = (((double)inputMat[r][c])/(double)maxArray[c]);
+                        per = per*(width);
+                        inputMat[r][c] = (int)(Math.round(per));//(int)(11-(Math.round(per)));
+                    }
+                }
+            }
+
+            displayMessage("inputMatrix :");
+            printMat(inputMat,size,size);
+            runAlgorithm = true;
+        }
+        else if (profileSet.size() > 3) {
+            double per = 0;
+            int noDevice = profileSet.size();
+
+            int[] maxArray = new int[noDevice];
+            for(int c=0; c<numberOfCapablity ;c++){
+                int max = 0;
+                for(int r=0; r<noDevice;r++){
+                    if (ranker_Output_Matirx[r][c] >= max) {
+                        max = ranker_Output_Matirx[r][c];
+                    }
+                }
+                maxArray[c] = max;
+            }
+
+            	for (int j =0; j< numberOfCapablity;j++) {
+                    Log.d(TAG,"maxArray["+j+"] : "+maxArray[j]);
+                    System.out.print(maxArray[j] + " ");
+                }
+
+            for(int c=0; c<numberOfCapablity;c++){
+                for(int r=0; r<noDevice;r++){
+                    if (ranker_Output_Matirx[r][c]!=0) {
+                        per = (((double)ranker_Output_Matirx[r][c])/(double)maxArray[c]);
+                        per = per*(noDevice);
+                        ranker_Output_Matirx[r][c] = (int)(Math.round(per));//(int)(11-(Math.round(per)));
+                    }
+                }
+            }
+
+            displayMessage("ranker_Output_Matirx for all device:\n");
+            printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
+
+            inputMat = new int[3][3];
+            Integer capabilitySumArray[] = new Integer[profileSet.size()];
+
+            for (int r = 0; r < profileSet.size(); r++) {
+                int sum = 0;
+                for (int c = 0; c < numberOfCapablity; c++) {
+                    sum = sum + ranker_Output_Matirx[r][c];
+                }
+                capabilitySumArray[r] = sum;
+            }
+
+            for (int j = 0; j< noDevice;j++) {
+                Log.d(TAG,"sum of ["+j+"] device : "+maxArray[j]);
+                System.out.print(maxArray[j] + " ");
+            }
+
+            List<Integer> list = Arrays.asList(capabilitySumArray);
+            int max = Collections.max(list);
+
+            int profileAddedToInputMatrix = 0;
+            while (profileAddedToInputMatrix < 3) {
+                for (int r = 0; r < profileSet.size() && profileAddedToInputMatrix < 3; r++) {
+                    if (max == capabilitySumArray[r]) {
+                        for(int c=0; c<numberOfCapablity;c++){
+                            inputMat[profileAddedToInputMatrix][c] = ranker_Output_Matirx[r][c];
+                        }
+                        profileAddedToInputMatrix++;
+                        if (profileAddedToInputMatrix == 3) {
+                            break;
+                        }
+                    }
+                }
+                max = max - 1;
+            }
+
+            printMat(inputMat,3,3);
+            runAlgorithm = true;
+        }
+        else {
+            displayMessage("Exception in generating Ranker Matrix, profileSet.size : "+profileSet.size());
+        }
+
+        if (runAlgorithm) {
+
+        }
+    }
+
+    void runAlgoBasedOnSelection(int matrixSize) {
+        long time = System.currentTimeMillis();
+        AlgoMethod algorithm = new AlgoMethod(inputMat,inputMat.length);
+        System.out.println(String.format("\nTotal time taken to execute : %dms\n", System.currentTimeMillis() - time));
+
+        String capArr[] = {"CPU","MEM","CAM"};
+
+        int[] r = algorithm.result();
+        System.out.println("Output : ");
+        for (int k =0 ; k < r.length;k++) {
+            System.out.print("\n\n VALUE OF R : "+r[k]+" at "+k+"\n\n");
+        }
+
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        DeviceProfile d;
+        int i = 0;
+        String str = "";
+        while (it.hasNext()) {
+            d = it.next();
+            str =  " "+d.getCamVal() + " ";
+            str = str + d.getCpuVal() + " ";
+            str = str + d.getMemVal();
+            System.out.print("\n\n VALUE OF DEVICE "+d.devId+" : "+str+"\n\n");
+//                            display = d.devId + "device_id" +i + 1 + " Device " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability, Cost : " + profileInfoMat[i][r[i+1]];
+            System.out.print("\n\n VALUE OF R : "+r[i]+"\n\n");
+            System.out.println("device "+(i+1)+" with ID "+d.devId + " will work on " + capArr[r[i]]/*(r[i] + 1)*/ + " Capability");// Cost : " + inputMat[i][r[i]]);
+//                            t = Toast.makeText(getActivity().getApplicationContext(), display, Toast.LENGTH_SHORT);
+//                            t.show();
+            i++;
+        }
+
+        System.out.println("\nTotal Cost : " + algorithm.total());
     }
 
     void generateInputMat(){
