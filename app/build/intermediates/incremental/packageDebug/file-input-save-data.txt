@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Tue Jun 20 15:07:56 IST 2017
+#Thu Jun 22 14:06:54 IST 2017
 25.file=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/resources-debug.ap_/res/drawable-xhdpi-v4/ic_launcher.png
 41.base=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/resources-debug.ap_
 25.base=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/res/resources-debug.ap_

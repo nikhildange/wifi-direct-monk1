@@ -1,4 +1,4 @@
-#Tue Jun 20 15:07:54 IST 2017
+#Thu Jun 22 14:06:52 IST 2017
 base.0=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_398c83e8a4ae3cbd1ac42307bda93759d0bb503c
 renamed.1=classes.dex
 renamed.0=classes2.dex

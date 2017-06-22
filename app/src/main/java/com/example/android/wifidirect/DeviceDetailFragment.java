@@ -138,6 +138,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     private String profileArray[];
     private int ranker_Output_Matirx[][];
 
+    private boolean isExecutingReq = false;
+    private int multipleRequestCount = 0;
+
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -194,7 +197,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                        generateRankerMatrix();
+                        startOperation();
 //                        runAlgorithm();
 //                            startOperation();
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
@@ -346,9 +349,16 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         // ID_HEDE
 
         if (message.contains("_RES_CPU[[")) {
+            String responseFromProfileId = message.substring(0,message.indexOf("_"));
+            setDeviceBusyState(responseFromProfileId,false);
+
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
             String responseRequestNumber = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
             System.out.print("input:"+input+" responseRequestNumber:"+responseRequestNumber);
+
+            if (multipleRequestCount > 0) {
+                performSelection();
+            }
             // ID_REQ_MEM[[]]((R))
             String selectedProfileId = selectionArray[1];
             if (selectedProfileId.equals(mydeviceId) && isServer) {
@@ -358,8 +368,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             else {
                 broadcastMessageToClients(selectedProfileId+"_REQ_MEM[["+input+"]]((R"+responseRequestNumber+"))");
             }
+            setDeviceBusyState(selectedProfileId,true);
         }
         else if (message.contains("_RES_MEM[[")) {
+            String responseFromProfileId = message.substring(0,message.indexOf("_"));
+            setDeviceBusyState(responseFromProfileId,false);
+
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
             String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
             System.out.print("input:"+input+" responseRequestNumber:"+R);
@@ -372,14 +386,33 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             else {
                 broadcastMessageToClients(hegheMessage);
             }
+
+            if (multipleRequestCount > 0) {
+                multipleRequestCount--;
+            }
+            if (multipleRequestCount == 0) {
+                isExecutingReq = false;
+            }
         }
         else if (message.contains("_HEDE")) {
-            runAlgorithm();
+            if (isExecutingReq && multipleRequestCount == 0) {
+                multipleRequestCount = 2;
+            }
+            else if (isExecutingReq && multipleRequestCount > 0) {
+                multipleRequestCount++;
+            }
+            else {
+                isExecutingReq = true;
+            }
+
+            performSelection();
+            // ID_REQ_CPU((R))
+            String selectedProfileId = selectionArray[0];
+
             String requestingProfileId = message.substring(0,message.indexOf("_"));
             requestArray[requestCount++]=requestingProfileId;
             displayMessage("Requesting Profile Id : "+requestingProfileId);
-            // ID_REQ_CPU((R))
-            String selectedProfileId = selectionArray[0];;
+
             if (selectedProfileId.equals(mydeviceId) && isServer) {
                 requestNumber = requestCount-1;
                 performCPUOperation();
@@ -387,6 +420,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             else {
                 broadcastMessageToClients(selectedProfileId+"_REQ_CPU((R"+(requestCount-1)+"))");
             }
+            setDeviceBusyState(selectedProfileId,true);
         }
         else if (message.contains(mydeviceId+"_HEGHE[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
@@ -421,7 +455,17 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
     }
 
-    private String performSelection() {
+
+    private void performSelection() {
+        if (multipleRequestCount > 0) {
+            generateRankerMatrixForAvailiablity(true);
+        }
+        else {
+            generateRankerMatrixForAvailiablity(false);
+        }
+    }
+
+    private String performSelectionOnRandom() {
         int random = getRandom(0,profileSet.size()-1), i = 0;
         displayMessage("Random Number: "+random);
         DeviceProfile profile = null;
@@ -440,6 +484,29 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
 //        displayMessage("Profile Id : "+profile.devId);
         return profile.devId;
+    }
+
+    private void setDeviceBusyState(String profileID,Boolean state) {
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        while (it.hasNext()) {
+                DeviceProfile dp = it.next();
+                if (dp.devId.equals(profileID)) {
+                    dp.setBusy(state);
+                    break;
+                }
+        }
+    }
+
+    private Boolean getDeviceBusyState(String profileID) {
+        Iterator<DeviceProfile> it = profileSet.iterator();
+        while (it.hasNext()) {
+            DeviceProfile dp = it.next();
+            if (dp.devId.equals(profileID)) {
+                return  dp.getAvailiability();
+            }
+        }
+        sendMessageToServer("Not getting device state of id :"+profileID);
+        return false;
     }
 
     private void establishConnectionForCommunication(final WifiP2pInfo info) {
@@ -677,28 +744,59 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         System.out.println();
     }
 
-    void generateRankerMatrix() {
-        Boolean runAlgorithm = false;
-        profileArray = new String[profileSet.size()];
-        ranker_Output_Matirx = new int[profileSet.size()][3];
+    void generateRankerMatrixForAvailiablity(boolean getAvailableDevice) {
 
-        Iterator<DeviceProfile> it = profileSet.iterator();
-        DeviceProfile deviceProfile;
+        Boolean runAlgorithm = false;
         int devNo = 0;
-        while (it.hasNext()) {
-            deviceProfile = it.next();
-                profileArray[devNo] = deviceProfile.devId;
-                ranker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
-                ranker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
-                ranker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
-            displayMessage("\nDEV_ID: "+profileArray[devNo]+" CPU:"+ranker_Output_Matirx[devNo][0]+"  MEM:"+ranker_Output_Matirx[devNo][1]+"  CAM:"+ranker_Output_Matirx[devNo][2]);
-            devNo++;
+        if (getAvailableDevice) {
+            String tempProfileArray[] = new String[profileSet.size()];
+            int[][] tempRanker_Output_Matirx = new int[profileSet.size()][3];
+
+            Iterator<DeviceProfile> it = profileSet.iterator();
+            DeviceProfile deviceProfile;
+
+            while (it.hasNext()) {
+                deviceProfile = it.next();
+                if (deviceProfile.getAvailiability()) {
+                    tempProfileArray[devNo] = deviceProfile.devId;
+                    tempRanker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
+                    tempRanker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
+                    tempRanker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
+                    displayMessage("\nDEV_ID: " + tempProfileArray[devNo] + " CPU:" + tempRanker_Output_Matirx[devNo][0] + "  MEM:" + tempRanker_Output_Matirx[devNo][1] + "  CAM:" + tempRanker_Output_Matirx[devNo][2]);
+                    devNo++;
+                }
+            }
+            profileArray = new String[devNo];
+            ranker_Output_Matirx = new int[devNo][3];
+            for (int i = 0; i < devNo; i++) {
+                profileArray[i] = tempProfileArray[i];
+                ranker_Output_Matirx[i][0] = tempRanker_Output_Matirx[i][0];
+                ranker_Output_Matirx[i][1] = tempRanker_Output_Matirx[i][1];
+                ranker_Output_Matirx[i][2] = tempRanker_Output_Matirx[i][2];
+            }
         }
+        else {
+                profileArray = new String[profileSet.size()];
+                ranker_Output_Matirx = new int[profileSet.size()][3];
+
+                Iterator<DeviceProfile> it = profileSet.iterator();
+                DeviceProfile deviceProfile;
+                while (it.hasNext()) {
+                    deviceProfile = it.next();
+                    profileArray[devNo] = deviceProfile.devId;
+                    ranker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
+                    ranker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
+                    ranker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
+                    displayMessage("\nDEV_ID: " + profileArray[devNo] + " CPU:" + ranker_Output_Matirx[devNo][0] + "  MEM:" + ranker_Output_Matirx[devNo][1] + "  CAM:" + ranker_Output_Matirx[devNo][2]);
+                    devNo++;
+                }
+            }
+
         displayMessage("ranker_Output_Matirx:\n");
         printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
 
-        if (profileSet.size() == 2 || profileSet.size() == 3) {
-            int size = profileSet.size();
+        if (devNo == 2 || devNo == 3) {
+            int size = devNo;
             inputMat = new int[size][size];
             for(int r=0; r<size;r++){
                 for(int c=0; c<size;c++){
@@ -712,12 +810,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
 
             double per = 0;
-            int width = size;
 
-            int[] maxArray = new int[width];
-            for(int r=0; r<width;r++){
+            int[] maxArray = new int[size];
+            for(int r=0; r<size;r++){
                 int max = 0;
-                for(int c=0; c<width;c++){
+                for(int c=0; c<size;c++){
                     if (inputMat[c][r] >= max) {
                         max = inputMat[c][r];
                     }
@@ -725,14 +822,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 maxArray[r] = max;
             }
 
-            //	for (int j =0; j< width;j++)
+            //	for (int j =0; j< size;j++)
             //      	System.out.print(maxArray[j]+" ");
 
-            for(int c=0; c<width;c++){
-                for(int r=0; r<width;r++){
+            for(int c=0; c<size;c++){
+                for(int r=0; r<size;r++){
                     if (inputMat[r][c]!=0) {
                         per = (((double)inputMat[r][c])/(double)maxArray[c]);
-                        per = per*(width);
+                        per = per*(size);
                         inputMat[r][c] = (int)(Math.round(per));//(int)(11-(Math.round(per)));
                     }
                 }
@@ -742,14 +839,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             printMat(inputMat,size,size);
             runAlgorithm = true;
         }
-        else if (profileSet.size() > 3) {
+        else if (devNo > 3) {
             double per = 0;
-            int noDevice = profileSet.size();
+            int size = devNo;
 
-            int[] maxArray = new int[noDevice];
+            int[] maxArray = new int[size];
             for(int c=0; c<numberOfCapablity ;c++){
                 int max = 0;
-                for(int r=0; r<noDevice;r++){
+                for(int r=0; r<size;r++){
                     if (ranker_Output_Matirx[r][c] >= max) {
                         max = ranker_Output_Matirx[r][c];
                     }
@@ -763,10 +860,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
 
             for(int c=0; c<numberOfCapablity;c++){
-                for(int r=0; r<noDevice;r++){
+                for(int r=0; r<size;r++){
                     if (ranker_Output_Matirx[r][c]!=0) {
                         per = (((double)ranker_Output_Matirx[r][c])/(double)maxArray[c]);
-                        per = per*(noDevice);
+                        per = per*(size);
                         ranker_Output_Matirx[r][c] = (int)(Math.round(per));//(int)(11-(Math.round(per)));
                     }
                 }
@@ -776,9 +873,9 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
 
             inputMat = new int[3][3];
-            Integer capabilitySumArray[] = new Integer[profileSet.size()];
+            Integer capabilitySumArray[] = new Integer[devNo];
 
-            for (int r = 0; r < profileSet.size(); r++) {
+            for (int r = 0; r < devNo; r++) {
                 int sum = 0;
                 for (int c = 0; c < numberOfCapablity; c++) {
                     sum = sum + ranker_Output_Matirx[r][c];
@@ -786,7 +883,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 capabilitySumArray[r] = sum;
             }
 
-            for (int j = 0; j< noDevice;j++) {
+            for (int j = 0; j< size;j++) {
                 Log.d(TAG,"sum of ["+j+"] device : "+capabilitySumArray[j]);
                 System.out.print(capabilitySumArray[j] + " ");
             }
@@ -798,7 +895,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
             int profileAddedToInputMatrix = 0;
             while (profileAddedToInputMatrix < 3) {
-                for (int r = 0; r < profileSet.size() && profileAddedToInputMatrix < 3; r++) {
+                for (int r = 0; r < devNo && profileAddedToInputMatrix < 3; r++) {
                     if (max == capabilitySumArray[r]) {
                         System.out.println("profileAddedToInputMatrix : "+profileAddedToInputMatrix);
                         for(int c=0; c<numberOfCapablity;c++){
@@ -824,7 +921,15 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             runAlgorithm = true;
         }
         else {
-            displayMessage("Exception in generating Ranker Matrix, profileSet.size : "+profileSet.size());
+            if (getAvailableDevice) {
+                if (devNo == 1) {
+                    selectionArray[0] = profileArray[0];
+                    selectionArray[1] = profileArray[0];
+                }
+            }
+            else {
+                displayMessage("Exception in generating Ranker Matrix, profileSet.size : " + profileSet.size());
+            }
         }
 
         if (runAlgorithm) {

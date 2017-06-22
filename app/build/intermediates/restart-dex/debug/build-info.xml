@@ -6,7 +6,7 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1497957646365"
+    timestamp="1498120606697"
     token="2066079659465208051"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -23,6 +23,9 @@
         name="verifier"
         duration="0" />
 
+    <artifact
+        location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
+        type="SPLIT_MAIN" />
     <artifact
         location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
         type="SPLIT" />
@@ -56,14 +59,14 @@
     <artifact
         location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
         type="SPLIT" />
-    <artifact
-        location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
-        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1497957646365"
+        timestamp="1498120606697"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
             type="SPLIT" />
@@ -97,9 +100,6 @@
         <artifact
             location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_1.apk"
             type="SPLIT" />
-        <artifact
-            location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>
