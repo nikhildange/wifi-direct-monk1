@@ -4,7 +4,7 @@
     <color name="status_bar_color">#FF000000</color>
     <dimen name="phone_list_height">200dp</dimen>
     <dimen name="tablet_list_width">300dp</dimen>
-    <string name="app_name">WiFi Direct</string>
+    <string name="app_name">CoWorker</string>
     <string name="client_text">This device will act as a client. Click on Gallery button to pick a local(stored) file</string>
     <string name="connect_peer_button">Connect</string>
     <string name="disconnect_peer_button">Disconnect</string>

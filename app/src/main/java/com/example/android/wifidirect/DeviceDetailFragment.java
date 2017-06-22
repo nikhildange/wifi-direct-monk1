@@ -118,7 +118,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
-    boolean runOnYourOwnMode = false;
+    boolean runOnYourOwnMode = true;
 
     private TessOCR mTessOCR;
     private static final String TAG = "info";
@@ -265,7 +265,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             oos.writeObject(deviceProfile);
 //            oos.close();
 //            os.close();
-            displayMessage("Profile Sent:");
+            displayMessage("Profile Sent:",true);
             deviceProfile.logDetails();
         }
         catch (Exception e){
@@ -281,7 +281,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             DeviceProfile receivedProfile = (DeviceProfile)ois.readObject();
 //            ois.close();
 //            is.close();
-            displayMessage("Profile Received:");
+            displayMessage("Profile Received:",true);
             receivedProfile.socket = socket;
             receivedProfile.logDetails();
             profileSet.add(receivedProfile);
@@ -303,7 +303,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 DeviceProfile devProfile = it.next();
                 String nextDeviceId = devProfile.devId;
                 if (nextDeviceId.equals(exitingDeviceId)) {
-                    displayMessage("Removing Profile :");
+                    displayMessage("Removing Profile :",true);
                     devProfile.logDetails();
                     try {
                         devProfile.socket.close();
@@ -329,7 +329,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 try {
                     DeviceProfile dp = it.next();
                     if (!dp.devId.equals(mydeviceId)) {
-                        displayMessage("Sending Message to #"+(i+1)+" client : "+message);
+                        displayMessage("Sending Message to #"+(i+1)+" client : "+message,false);
                         Socket client = dp.socket;
                         out = new PrintWriter(client.getOutputStream(), true);
                         out.println(message);
@@ -378,7 +378,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
             System.out.print("input:"+input+" responseRequestNumber:"+R);
             String requestDeviceId = requestArray[Integer.parseInt(R)];
-            displayMessage(requestDeviceId+"in the Array at pos "+Integer.parseInt(R));
+            displayMessage(requestDeviceId+"in the Array at pos "+Integer.parseInt(R),false);
             String hegheMessage = requestDeviceId+"_HEGHE[[" + input + "]]";
             if (requestDeviceId.equals(mydeviceId)) {
                 messageReceivedByServer(hegheMessage);
@@ -411,7 +411,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
             String requestingProfileId = message.substring(0,message.indexOf("_"));
             requestArray[requestCount++]=requestingProfileId;
-            displayMessage("Requesting Profile Id : "+requestingProfileId);
+            displayMessage("Requesting Profile Id : "+requestingProfileId,false);
 
             if (selectedProfileId.equals(mydeviceId) && isServer) {
                 requestNumber = requestCount-1;
@@ -425,8 +425,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         else if (message.contains(mydeviceId+"_HEGHE[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
             endnow = android.os.SystemClock.uptimeMillis();
-            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
-            displayMessage("RESULT : "+input);
+            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+            displayMessage("RESULT : "+input,true);
         }
     }
 
@@ -449,8 +449,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             else if (message.contains(mydeviceId+"_HEGHE[[")) {
                 String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
                 endnow = android.os.SystemClock.uptimeMillis();
-                displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
-                displayMessage("RESULT : "+input);
+                displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+                displayMessage("RESULT : "+input,true);
             }
         }
     }
@@ -467,7 +467,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private String performSelectionOnRandom() {
         int random = getRandom(0,profileSet.size()-1), i = 0;
-        displayMessage("Random Number: "+random);
+        displayMessage("Random Number: "+random,false);
         DeviceProfile profile = null;
         Iterator<DeviceProfile> it = profileSet.iterator();
         while (it.hasNext()) {
@@ -477,12 +477,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 //                return profile.devId;
 //            }
             if (i == random) {
-                displayMessage(i+" inside Profile Id : "+profile.devId);
+                displayMessage(i+" inside Profile Id : "+profile.devId,false);
                 break;
             }
             i++;
         }
-//        displayMessage("Profile Id : "+profile.devId);
+//        displayMessage("Profile Id : "+profile.devId,false);
         return profile.devId;
     }
 
@@ -517,7 +517,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         public void run() {
                             try {
                                 int port = 8986;
-                                displayMessage("Started Server Thread");
+                                displayMessage("Started Server Thread",false);
                                 if (serverSocket == null)
                                     serverSocket = new ServerSocket(port);
 //									ServerSocket serverSocket = new ServerSocket();
@@ -531,7 +531,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 try {
                                     while(true ) {
                                         String messageReceived = in.readLine();
-                                        displayMessage("Message Received from Client : "+messageReceived);
+                                        displayMessage("Message Received from Client : "+messageReceived,false);
                                         if (messageReceived.contains("_disconnect")) {
                                             removeProfile(messageReceived);
                                         }
@@ -539,7 +539,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                             messageReceivedByServer(messageReceived);
                                         }
 //                                            if (messageReceived == null) {
-//                                                displayMessage("Message NULL on client #");
+//                                                displayMessage("Message NULL on client #",false);
 //                                                break;
 //                                            }
                                     }
@@ -579,13 +579,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 try {
                                     while (true) {
                                         String messageReceived = in.readLine();
-                                        displayMessage("Message Received from Server : "+messageReceived);
+                                        displayMessage("Message Received from Server : "+messageReceived,false);
                                         if (messageReceived.equals("server_disconnect")) {
-                                            displayMessage("Message NULL from server");
+                                            displayMessage("Message NULL from server",false);
                                             break;
                                         }
                                         if (messageReceived == null) {
-                                            displayMessage("Message NULL from server");
+                                            displayMessage("Message NULL from server",false);
                                             break;
                                         }
                                         else {
@@ -762,7 +762,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     tempRanker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
                     tempRanker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
                     tempRanker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
-                    displayMessage("\nDEV_ID: " + tempProfileArray[devNo] + " CPU:" + tempRanker_Output_Matirx[devNo][0] + "  MEM:" + tempRanker_Output_Matirx[devNo][1] + "  CAM:" + tempRanker_Output_Matirx[devNo][2]);
+                    displayMessage("\nDEV_ID: " + tempProfileArray[devNo] + " CPU:" + tempRanker_Output_Matirx[devNo][0] + "  MEM:" + tempRanker_Output_Matirx[devNo][1] + "  CAM:" + tempRanker_Output_Matirx[devNo][2],false);
                     devNo++;
                 }
             }
@@ -787,12 +787,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                     ranker_Output_Matirx[devNo][0] = deviceProfile.getCpuVal();
                     ranker_Output_Matirx[devNo][1] = deviceProfile.getMemVal();
                     ranker_Output_Matirx[devNo][2] = deviceProfile.getCamVal();
-                    displayMessage("\nDEV_ID: " + profileArray[devNo] + " CPU:" + ranker_Output_Matirx[devNo][0] + "  MEM:" + ranker_Output_Matirx[devNo][1] + "  CAM:" + ranker_Output_Matirx[devNo][2]);
+                    displayMessage("\nDEV_ID: " + profileArray[devNo] + " CPU:" + ranker_Output_Matirx[devNo][0] + "  MEM:" + ranker_Output_Matirx[devNo][1] + "  CAM:" + ranker_Output_Matirx[devNo][2],false);
                     devNo++;
                 }
             }
 
-        displayMessage("ranker_Output_Matirx:\n");
+        displayMessage("ranker_Output_Matirx:\n",false);
         printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
 
         if (devNo == 2 || devNo == 3) {
@@ -805,7 +805,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
 
             if (size == 2){
-                displayMessage("ranker_Output_Matrix based inputMat:\n");
+                displayMessage("ranker_Output_Matrix based inputMat:\n",false);
                 printMat(inputMat,size,size);
             }
 
@@ -835,7 +835,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
             }
 
-            displayMessage("inputMatrix :");
+            displayMessage("inputMatrix :",false);
             printMat(inputMat,size,size);
             runAlgorithm = true;
         }
@@ -869,7 +869,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
             }
 
-            displayMessage("ranker_Output_Matirx for all device:\n");
+            displayMessage("ranker_Output_Matirx for all device:\n",false);
             printMat(ranker_Output_Matirx,devNo,numberOfCapablity);
 
             inputMat = new int[3][3];
@@ -928,7 +928,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 }
             }
             else {
-                displayMessage("Exception in generating Ranker Matrix, profileSet.size : " + profileSet.size());
+                displayMessage("Exception in generating Ranker Matrix, profileSet.size : " + profileSet.size(),false);
             }
         }
 
@@ -1077,12 +1077,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     }
 
     public void onStartOCRClick(){
-        displayMessage("Process OCR Begin");
+        displayMessage("Process OCR Begin",false);
         imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img1.png");
         imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img2.png");
         imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img3.png");
-        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img4.png");
-        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img5.png");
+        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image6.png");
+        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image7.png");
         doOCR();
     }
 
@@ -1092,10 +1092,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             File dir = new File(path);
             if (!dir.exists()) {
                 if (!dir.mkdirs()) {
-                    displayMessage("ERROR: Creation of directory " + path + " on sdcard failed");
+                    displayMessage("ERROR: Creation of directory " + path + " on sdcard failed",true);
                     break;
                 } else {
-                    displayMessage("Created directory " + path + " on sdcard");
+                    displayMessage("Created directory " + path + " on sdcard",true);
                 }
             }
 
@@ -1152,12 +1152,12 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                     String formattedResult = result.trim();
                                     formattedResult = formattedResult.replace("\n", "").replace("\r", "");
 //                            textView.setText(result);
-                                    displayMessage("OCR Result : " + formattedResult);
+                                    displayMessage("OCR Result : " + formattedResult,true);
                                     mProgressDialog.dismiss();
                                     completedCPUOperation(formattedResult);
                                 }
                                 else {
-                                    displayMessage("Invalid Result of OCR : "+result);
+                                    displayMessage("Invalid Result of OCR : "+result,true);
                                     mProgressDialog.dismiss();
                                 }
                             }
@@ -1193,15 +1193,17 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         return bitmap;
     }
 
-    void displayMessage(final String message) {
+    void displayMessage(final String message, boolean toastMessage) {
         Log.d(TAG,message);
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
-                t.show();
-            }
-        });
+        if (toastMessage) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
+                    t.show();
+                }
+            });
+        }
     }
 
     void memOperation(final String inputLine){
@@ -1233,7 +1235,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        displayMessage("MEM Result : "+finalOutput);
+                        displayMessage("MEM Result : "+finalOutput,true);
                         completedMEMOperation(finalOutput);
                         mProgressDialog.dismiss();
                     }});
@@ -1273,8 +1275,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     void completedMEMOperation(String result){
         if (runOnYourOwnMode){
             endnow = android.os.SystemClock.uptimeMillis();
-            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s");
-            displayMessage("Final Result : "+result);
+            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+            displayMessage("Final Result : "+result,true);
         }
         else {
             String message = "_RES_MEM[[" + result + "]]((R" + requestNumber + "))";
