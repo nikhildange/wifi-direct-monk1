@@ -1,4 +1,13 @@
-#Sat Jun 17 13:17:23 IST 2017
-base.0=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5038a228864978596faa44609fa14359605a57e
-renamed.0=classes.dex
-file.0=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5038a228864978596faa44609fa14359605a57e/classes.dex
+#Tue Jun 27 21:03:09 IST 2017
+renamed.3=classes.dex
+renamed.2=classes4.dex
+renamed.1=classes3.dex
+renamed.0=classes2.dex
+base.3=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5038a228864978596faa44609fa14359605a57e
+base.2=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.1_d4d5c94cf792c9363d2660fc66b2da330750e82b
+base.1=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.1_f82b3396b10df137fa8c96c46f4b65d87bddca1f
+base.0=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_daf510893966687540937adff6a43128cb6eca86
+file.3=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_a5038a228864978596faa44609fa14359605a57e/classes.dex
+file.2=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-22.2.1_d4d5c94cf792c9363d2660fc66b2da330750e82b/classes.dex
+file.1=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-22.2.1_f82b3396b10df137fa8c96c46f4b65d87bddca1f/classes.dex
+file.0=/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_daf510893966687540937adff6a43128cb6eca86/classes.dex

@@ -48,6 +48,7 @@ import com.example.android.wifidirect.DeviceListFragment.DeviceActionListener;
  */
 public class WiFiDirectActivity extends Activity implements ChannelListener, DeviceActionListener {
 
+    OperationExecutionState operationExecutionState;
     public static final String TAG = "wifidirectdemo";
     private WifiP2pManager manager;
     private boolean isWifiP2pEnabled = false;
@@ -128,6 +129,12 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case R.id.atn_own_mode:
+                DeviceDetailFragment fragmentDetails = (DeviceDetailFragment) getFragmentManager()
+                        .findFragmentById(R.id.frag_detail);
+                fragmentDetails.changeState();
+                return true;
+
             case R.id.atn_direct_enable:
                 if (manager != null && channel != null) {
 
@@ -266,6 +273,10 @@ public class WiFiDirectActivity extends Activity implements ChannelListener, Dev
                 });
             }
         }
+    }
 
+    public interface OperationExecutionState
+    {
+        void changeState();
     }
 }

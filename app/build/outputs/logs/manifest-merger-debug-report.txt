@@ -18,6 +18,7 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 uses-sdk
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:5:5-44
 MERGED from [com.rmtheis:tess-two:5.4.1] /Users/nikhildange/.android/build-cache/8f3dda6430460c0eb9e49fa7ec4b2c6034c82997/output/AndroidManifest.xml:22:5-24:41
+MERGED from [com.android.support:support-v4:22.2.1] /Users/nikhildange/.android/build-cache/63918d4a2ea18bc0890c13cffef37b2ac7e3cc95/output/AndroidManifest.xml:20:5-43
 	android:targetSdkVersion
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
 		INJECTED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml
@@ -61,6 +62,7 @@ ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidMa
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:15:19-62
 application
 ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:17:5-35:19
+MERGED from [com.android.support:support-v4:22.2.1] /Users/nikhildange/.android/build-cache/63918d4a2ea18bc0890c13cffef37b2ac7e3cc95/output/AndroidManifest.xml:22:5-20
 	android:label
 		ADDED from /Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/AndroidManifest.xml:19:9-41
 	android:icon

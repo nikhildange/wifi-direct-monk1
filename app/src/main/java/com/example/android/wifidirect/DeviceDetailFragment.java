@@ -51,6 +51,7 @@ import java.util.StringTokenizer;
 import java.util.TreeMap;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -88,7 +89,7 @@ import static android.content.Context.WIFI_SERVICE;
  * A fragment that manages a particular peer and allows interaction with device
  * i.e. setting up network connection and transferring data.
  */
-public class DeviceDetailFragment extends Fragment implements ConnectionInfoListener {
+public class DeviceDetailFragment extends Fragment implements ConnectionInfoListener, WiFiDirectActivity.OperationExecutionState {
 
     public static final String IP_SERVER = "192.168.49.1";
     public static int PORT = 8988;
@@ -127,7 +128,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     //    TextView textView;
     private ProgressDialog mProgressDialog;
-    private Bitmap imageArray[] = new Bitmap[5];
+    private Bitmap imageArray[] = new Bitmap[3];
 
     private long startnow;
     private long endnow;
@@ -425,8 +426,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         else if (message.contains(mydeviceId+"_HEGHE[[")) {
             String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
             endnow = android.os.SystemClock.uptimeMillis();
-            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+            long execTime = (endnow - startnow)/100;
+            displayMessage("Execution time: " + execTime + " ms",true);
             displayMessage("RESULT : "+input,true);
+            showResult("Final",execTime+"",input);
         }
     }
 
@@ -449,8 +452,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             else if (message.contains(mydeviceId+"_HEGHE[[")) {
                 String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
                 endnow = android.os.SystemClock.uptimeMillis();
-                displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+                long execTime = (endnow - startnow)/100;
+                displayMessage("Execution time: " + execTime + " ms",true);
                 displayMessage("RESULT : "+input,true);
+                showResult("Final",execTime+"",input);
             }
         }
     }
@@ -1078,11 +1083,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     public void onStartOCRClick(){
         displayMessage("Process OCR Begin",false);
-        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img1.png");
-        imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img2.png");
-        imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"img3.png");
-        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image6.png");
-        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image7.png");
+        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image1.jpg");
+        imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image6.png");
+        imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image7.png");
+
+//        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image2.jpg");
+//        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image3.jpg");
+//        imageArray[5] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image4.jpg");
         doOCR();
     }
 
@@ -1150,7 +1157,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                                 // TODO Auto-generated method stub
                                 if (result != null && !result.equals("")) {
                                     String formattedResult = result.trim();
-                                    formattedResult = formattedResult.replace("\n", "").replace("\r", "");
+                                    formattedResult = formattedResult.replace("\n", " ").replace("\r", "");
 //                            textView.setText(result);
                                     displayMessage("OCR Result : " + formattedResult,true);
                                     mProgressDialog.dismiss();
@@ -1193,13 +1200,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         return bitmap;
     }
 
-    void displayMessage(final String message, boolean toastMessage) {
-        Log.d(TAG,message);
+    void displayMessage(String message, boolean toastMessage) {
+        final String formatedMessage = message.replace("<<;>>","");
+        Log.d(TAG,formatedMessage);
         if (toastMessage) {
             new Handler(Looper.getMainLooper()).post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast t = Toast.makeText(getActivity().getApplicationContext(), message, Toast.LENGTH_LONG);
+                    Toast t = Toast.makeText(getActivity().getApplicationContext(), formatedMessage, Toast.LENGTH_LONG);
                     t.show();
                 }
             });
@@ -1218,13 +1226,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         }});
 
                 WordUtils obj = new WordUtils();
-                String fileArray[] = {"ebook1.txt"};//,"ebook2.txt","ebook3.txt","ebook4.txt"};
+                String fileArray[] = {"ebook1.txt","ebook2.txt"};//,"ebook3.txt","ebook4.txt"};
                 TreeMap map;
                 map = obj.runMem(inputLine, c, fileArray);
                 final Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
                 String output = " ";
                 for(Map.Entry<String,Integer> entry : entrySet){
-                    String values = entry.getValue() + "\t" + entry.getKey()+"\t ";
+                    String values = entry.getKey() + "\t (" + entry.getValue()+" times)\t<<;>> ";
                     System.out.println(values);
                     output = output + values;
                 }
@@ -1275,8 +1283,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     void completedMEMOperation(String result){
         if (runOnYourOwnMode){
             endnow = android.os.SystemClock.uptimeMillis();
-            displayMessage("Execution time: " + (endnow - startnow)/1000 + " s",true);
+            long execTime = (endnow - startnow)/100;
+            displayMessage("Execution time: " + execTime + " ms",true);
             displayMessage("Final Result : "+result,true);
+            showResult("Final",execTime+"",result);
         }
         else {
             String message = "_RES_MEM[[" + result + "]]((R" + requestNumber + "))";
@@ -1298,5 +1308,26 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 // Do something after 5s = 1000ms
             }
         }, 5000);
+    }
+
+    public void showResult(String type, String time, String result) {
+        FragmentManager fm = this.getFragmentManager();
+        result = result.replace("<<;>>","\n");
+        ResultDialogFragment resultDialogFragment= ResultDialogFragment.newInstance(type,time,result);
+        resultDialogFragment.show(fm,"Result");
+    }
+
+    @Override
+    public void changeState() {
+        runOnYourOwnMode = !runOnYourOwnMode;
+        String message;
+        if (runOnYourOwnMode) {
+            message = "runOnYourOwnMode:"+"true";
+            startOperation();
+        }
+        else {
+            message = "runOnYourOwnMode:"+"false";
+        }
+        displayMessage(message,true);
     }
 }

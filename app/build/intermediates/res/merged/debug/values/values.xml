@@ -12,11 +12,12 @@
     <string name="empty"/>
     <string name="empty_message">No devices found. Turn on P2P and perform discovery from the Action Bar</string>
     <string name="enable_p2p_button">P2P On/Off</string>
-    <string name="get_file_button">Launch Gallery</string>
+    <string name="get_file_button">Launch Operation</string>
     <string name="group_owner_text">"Am I the Group Owner? "</string>
     <string name="label_me">ME</string>
     <string name="label_peers">PEERS</string>
     <string name="no">no</string>
+    <string name="own_mode_button">Own Mode On/Off</string>
     <string name="p2p_off_warning">Enable P2P from action bar button above or system settings</string>
     <string name="yes">yes</string>
 </resources>
