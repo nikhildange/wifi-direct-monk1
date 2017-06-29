@@ -119,7 +119,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
     int inputMat[][];
     int numberOfCapablity;
 
-    boolean runOnYourOwnMode = true;
+    boolean runOnYourOwnMode = false;
 
     private TessOCR mTessOCR;
     private static final String TAG = "info";
@@ -406,13 +406,13 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 isExecutingReq = true;
             }
 
-            performSelection();
-            // ID_REQ_CPU((R))
-            String selectedProfileId = selectionArray[0];
-
             String requestingProfileId = message.substring(0,message.indexOf("_"));
             requestArray[requestCount++]=requestingProfileId;
             displayMessage("Requesting Profile Id : "+requestingProfileId,false);
+
+            performSelection();
+            // ID_REQ_CPU((R))
+            String selectedProfileId = selectionArray[0];
 
             if (selectedProfileId.equals(mydeviceId) && isServer) {
                 requestNumber = requestCount-1;
@@ -938,7 +938,46 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         }
 
         if (runAlgorithm) {
-            runAlgoBasedOnSelection();
+            displayMessage("Current multipleRequestCount : "+multipleRequestCount,false);
+            if (multipleRequestCount == 0) {
+                int size = inputMat.length;
+                displayMessage("Size : "+size,false);
+                Integer capabilitySumArray[] = new Integer[size];
+                for (int r = 0; r < size; r++) {
+                    int sum = 0;
+                    for (int c = 0; c < size; c++) {
+                        sum = sum + inputMat[r][c];
+                    }
+                    capabilitySumArray[r] = sum;
+                }
+
+                String profileID = "";
+                int MAX_capability_count = 0;
+                for (int i = 0; i < size; i++) {
+                    if (capabilitySumArray[i] == size * size) {
+                        MAX_capability_count++;
+                        profileID = profileArray[i];
+                        displayMessage("MAx Profile : "+profileID,false);
+                    }
+                    displayMessage("Sum of device "+i+":"+capabilitySumArray[i],false);
+                }
+                for (String id : requestArray) {
+                    displayMessage("\n Device At : "+id,false);
+                }
+                displayMessage("Selected MAX_capability_count : "+MAX_capability_count+" current requestCount : "+requestCount,false);
+                displayMessage("profileID  : "+profileID+"requestArray[requestCount-1]"+requestArray[requestCount-1],false);
+                if (MAX_capability_count == 1) {
+                    if (profileID.equals(requestArray[requestCount-1])) {
+                        selectionArray[0] = profileID;
+                        selectionArray[1] = profileID;
+                        displayMessage("\n\n Best perform OWN : "+profileID+"\n\n",false);
+                        runAlgorithm = false;
+                    }
+                }
+            }
+            if (runAlgorithm) {
+                runAlgoBasedOnSelection();
+            }
         }
     }
 
@@ -954,6 +993,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
         System.out.println("Output : ");
         for (int k =0 ; k < r.length;k++) {
+            displayMessage("\n\n Algorithm Allocation \n\n",false);
             System.out.print("\n\n"+profileArray[k]+" Device :"+k+" perform :"+capArr[r[k]]+" Operation\n");
             selectionArray[r[k]] = profileArray[k];
         }
@@ -1083,7 +1123,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     public void onStartOCRClick(){
         displayMessage("Process OCR Begin",false);
-        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image1.jpg");
+        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image1.png");
         imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image6.png");
         imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image7.png");
 
