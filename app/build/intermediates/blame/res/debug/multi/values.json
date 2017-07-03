@@ -155,14 +155,7 @@
                     "endOffset": 868
                 },
                 "from": {
-                    "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml",
-                    "position": {
-                        "startLine": 8,
-                        "startColumn": 4,
-                        "startOffset": 395,
-                        "endColumn": 60,
-                        "endOffset": 451
-                    }
+                    "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
                 }
             },
             {
@@ -182,20 +175,27 @@
                     "startLine": 16,
                     "startColumn": 4,
                     "startOffset": 943,
-                    "endColumn": 39,
-                    "endOffset": 978
+                    "endColumn": 70,
+                    "endOffset": 1009
                 },
                 "from": {
-                    "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
+                    "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 20,
+                        "startColumn": 4,
+                        "startOffset": 1120,
+                        "endColumn": 70,
+                        "endOffset": 1186
+                    }
                 }
             },
             {
                 "to": {
                     "startLine": 17,
                     "startColumn": 4,
-                    "startOffset": 983,
-                    "endColumn": 45,
-                    "endOffset": 1024
+                    "startOffset": 1014,
+                    "endColumn": 39,
+                    "endOffset": 1049
                 },
                 "from": {
                     "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
@@ -205,9 +205,9 @@
                 "to": {
                     "startLine": 18,
                     "startColumn": 4,
-                    "startOffset": 1029,
-                    "endColumn": 33,
-                    "endOffset": 1058
+                    "startOffset": 1054,
+                    "endColumn": 45,
+                    "endOffset": 1095
                 },
                 "from": {
                     "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
@@ -217,9 +217,9 @@
                 "to": {
                     "startLine": 19,
                     "startColumn": 4,
-                    "startOffset": 1063,
-                    "endColumn": 59,
-                    "endOffset": 1118
+                    "startOffset": 1100,
+                    "endColumn": 33,
+                    "endOffset": 1129
                 },
                 "from": {
                     "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
@@ -229,9 +229,9 @@
                 "to": {
                     "startLine": 20,
                     "startColumn": 4,
-                    "startOffset": 1123,
-                    "endColumn": 102,
-                    "endOffset": 1221
+                    "startOffset": 1134,
+                    "endColumn": 59,
+                    "endOffset": 1189
                 },
                 "from": {
                     "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
@@ -241,9 +241,21 @@
                 "to": {
                     "startLine": 21,
                     "startColumn": 4,
-                    "startOffset": 1226,
+                    "startOffset": 1194,
+                    "endColumn": 102,
+                    "endOffset": 1292
+                },
+                "from": {
+                    "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"
+                }
+            },
+            {
+                "to": {
+                    "startLine": 22,
+                    "startColumn": 4,
+                    "startOffset": 1297,
                     "endColumn": 35,
-                    "endOffset": 1257
+                    "endOffset": 1328
                 },
                 "from": {
                     "file": "/Users/nikhildange/proj/wifi-direct-demo-monk1/app/src/main/res/values/strings.xml"

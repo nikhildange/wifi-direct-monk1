@@ -72,6 +72,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.support.annotation.Nullable;
 import android.text.format.Formatter;
 import android.util.Log;
 import android.util.TimingLogger;
@@ -89,7 +90,7 @@ import static android.content.Context.WIFI_SERVICE;
  * A fragment that manages a particular peer and allows interaction with device
  * i.e. setting up network connection and transferring data.
  */
-public class DeviceDetailFragment extends Fragment implements ConnectionInfoListener, WiFiDirectActivity.OperationExecutionState {
+public class DeviceDetailFragment extends Fragment implements ConnectionInfoListener, WiFiDirectActivity.OperationExecutionState, InputDialogFragment.InputDialogListener {
 
     public static final String IP_SERVER = "192.168.49.1";
     public static int PORT = 8988;
@@ -141,6 +142,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     private boolean isExecutingReq = false;
     private int multipleRequestCount = 0;
+
+    private int numberOfInputUnit = 1;
+
+    private final String inputUnitLeftSymbol = "<;<;";
+    private final String inputUnitRightSymbol = ";>;>";
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -198,9 +204,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
                     @Override
                     public void onClick(View v) {
-                        startOperation();
-//                        runAlgorithm();
-//                            startOperation();
+                        takeInput();
 //                        Toast t = Toast.makeText(getActivity().getApplicationContext(), messageReceived, Toast.LENGTH_SHORT);
 //                        t.show();
                     }
@@ -362,12 +366,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             }
             // ID_REQ_MEM[[]]((R))
             String selectedProfileId = selectionArray[1];
+            String requestedInputUnit = message.substring(message.indexOf(inputUnitLeftSymbol)+4,message.indexOf(inputUnitRightSymbol));
             if (selectedProfileId.equals(mydeviceId) && isServer) {
+                numberOfInputUnit = Integer.parseInt(requestedInputUnit);
                 requestNumber = Integer.parseInt(responseRequestNumber);
                 performMEMOperation(input);
             }
             else {
-                broadcastMessageToClients(selectedProfileId+"_REQ_MEM[["+input+"]]((R"+responseRequestNumber+"))");
+                broadcastMessageToClients(selectedProfileId+"_REQ_MEM[["+input+"]]((R"+responseRequestNumber+"))"+inputUnitLeftSymbol+requestedInputUnit+inputUnitRightSymbol);
             }
             setDeviceBusyState(selectedProfileId,true);
         }
@@ -413,13 +419,14 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             performSelection();
             // ID_REQ_CPU((R))
             String selectedProfileId = selectionArray[0];
-
+            String requestedInputUnit = message.substring(message.indexOf(inputUnitLeftSymbol)+4,message.indexOf(inputUnitRightSymbol));
             if (selectedProfileId.equals(mydeviceId) && isServer) {
+                numberOfInputUnit = Integer.parseInt(requestedInputUnit);
                 requestNumber = requestCount-1;
                 performCPUOperation();
             }
             else {
-                broadcastMessageToClients(selectedProfileId+"_REQ_CPU((R"+(requestCount-1)+"))");
+                broadcastMessageToClients(selectedProfileId+"_REQ_CPU((R"+(requestCount-1)+"))"+inputUnitLeftSymbol+requestedInputUnit+inputUnitRightSymbol);
             }
             setDeviceBusyState(selectedProfileId,true);
         }
@@ -440,11 +447,15 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         if (mydeviceId.equals(message.substring(0,message.indexOf("_")))) {
             if (message.contains(mydeviceId+"_REQ_CPU((R")) {
                 String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+                String requestedInputUnit = message.substring(message.indexOf(inputUnitLeftSymbol)+4,message.indexOf(inputUnitRightSymbol));
+                numberOfInputUnit = Integer.parseInt(requestedInputUnit);
                 requestNumber = Integer.parseInt(R);
                 performCPUOperation();
             }
             else if (message.contains(mydeviceId+"_REQ_MEM[[")) {
                 String R = message.substring(message.indexOf("((R")+3,message.indexOf("))"));
+                String requestedInputUnit = message.substring(message.indexOf(inputUnitLeftSymbol)+4,message.indexOf(inputUnitRightSymbol));
+                numberOfInputUnit = Integer.parseInt(requestedInputUnit);
                 requestNumber = Integer.parseInt(R);
                 String input = message.substring(message.indexOf("[[")+2,message.indexOf("]]"));
                 performMEMOperation(input);
@@ -1016,7 +1027,6 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                 devNo++;
 //            }
         }
-
         printMat(inputMat, profileSet.size(), numberOfCapablity);
     }
 
@@ -1123,9 +1133,10 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
 
     public void onStartOCRClick(){
         displayMessage("Process OCR Begin",false);
-        imageArray[0] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image1.png");
-        imageArray[1] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image6.png");
-        imageArray[2] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image7.png");
+        String imageInputArray[] = {"ebook2.png","ebook1.png","ebook3.png"};//{"image1.png","image6.png","image7.png"};
+        for (int i = 0; i<numberOfInputUnit ; i++) {
+            imageArray[i] =  getBitmapFromAsset(getActivity().getApplicationContext(),imageInputArray[i]);
+        }
 
 //        imageArray[3] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image2.jpg");
 //        imageArray[4] =  getBitmapFromAsset(getActivity().getApplicationContext(),"image3.jpg");
@@ -1187,7 +1198,8 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                             }});
 
                         String recognisedString = "";
-                        for (Bitmap bitmap : imageArray) {
+                        for (int i = 0; i<numberOfInputUnit; i++) {
+                            Bitmap bitmap = imageArray[i];
                             recognisedString = recognisedString + " " + mTessOCR.getOCRResult(bitmap).toLowerCase();
                         }
                         final String result = recognisedString;
@@ -1266,7 +1278,11 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
                         }});
 
                 WordUtils obj = new WordUtils();
-                String fileArray[] = {"ebook1.txt","ebook2.txt"};//,"ebook3.txt","ebook4.txt"};
+                String fileArray[] = new String[numberOfInputUnit];
+                String fileInputArray[] = {"ebook2.txt","ebook1.txt","ebook3.txt","ebook4.txt"};
+                for (int i = 0; i<numberOfInputUnit ; i++) {
+                    fileArray[i] =  fileInputArray[i];
+                }
                 TreeMap map;
                 map = obj.runMem(inputLine, c, fileArray);
                 final Set<Map.Entry<String, Integer>> entrySet = map.entrySet();
@@ -1305,7 +1321,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             performCPUOperation();
         }
         else {
-            operationHandler("_HEDE");
+            operationHandler("_HEDE"+inputUnitLeftSymbol+numberOfInputUnit+inputUnitRightSymbol);
         }
         startnow = android.os.SystemClock.uptimeMillis();
     }
@@ -1315,7 +1331,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             performMEMOperation(result);
         }
         else {
-            String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))";
+            String message = "_RES_CPU[[" + result + "]]((R" + requestNumber + "))"+inputUnitLeftSymbol+numberOfInputUnit+inputUnitRightSymbol;
             operationHandler(message);
         }
     }
@@ -1329,7 +1345,7 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
             showResult("Final",execTime+"",result);
         }
         else {
-            String message = "_RES_MEM[[" + result + "]]((R" + requestNumber + "))";
+            String message = "_RES_MEM[[" + result + "]]((R" + requestNumber + "))"+inputUnitLeftSymbol+numberOfInputUnit+inputUnitRightSymbol;
             operationHandler(message);
         }
     }
@@ -1363,11 +1379,25 @@ public class DeviceDetailFragment extends Fragment implements ConnectionInfoList
         String message;
         if (runOnYourOwnMode) {
             message = "runOnYourOwnMode:"+"true";
-            startOperation();
+            takeInput();
         }
         else {
             message = "runOnYourOwnMode:"+"false";
         }
         displayMessage(message,true);
+    }
+
+    public void takeInput() {
+        FragmentManager fm = this.getFragmentManager();
+        InputDialogFragment inputDialogFragment = new InputDialogFragment();
+        inputDialogFragment.setTargetFragment(this, 450);
+        inputDialogFragment.show(fm,"add_input_dialog");
+    }
+
+    @Override
+    public void onInputSubmit(String inputSize) {
+        numberOfInputUnit = Integer.parseInt(inputSize);
+        displayMessage(inputSize,true);
+        startOperation();
     }
 }

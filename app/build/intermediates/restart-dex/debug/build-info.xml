@@ -6,7 +6,7 @@
     density="xhdpi"
     format="10"
     plugin-version="2.3.2"
-    timestamp="1498731601581"
+    timestamp="1499054162351"
     token="2066079659465208051"
     verifier="FULL_BUILD_REQUESTED" >
 
@@ -18,19 +18,19 @@
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="73" />
+        duration="0" />
     <task
         name="verifier"
-        duration="15" />
+        duration="0" />
 
-    <artifact
-        location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-        type="SPLIT" />
     <artifact
         location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
         type="SPLIT_MAIN" />
     <artifact
         location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+        type="SPLIT" />
+    <artifact
+        location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
         type="SPLIT" />
     <artifact
         location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
@@ -62,16 +62,16 @@
 
     <build
         build-mode="FULL"
-        timestamp="1498731601581"
+        timestamp="1499054162351"
         verifier="FULL_BUILD_REQUESTED" >
-        <artifact
-            location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
-            type="SPLIT" />
         <artifact
             location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/outputs/apk/app-debug.apk"
             type="SPLIT_MAIN" />
         <artifact
             location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/slices/slice_4.apk"
             type="SPLIT" />
         <artifact
             location="/Users/nikhildange/proj/wifi-direct-demo-monk1/app/build/intermediates/split-apk/debug/dep/dependencies.apk"
